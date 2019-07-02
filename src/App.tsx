@@ -2,14 +2,17 @@ import React from 'react';
 import { ThemeProvider } from '@material-ui/styles';
 import './App.scss';
 import Container from '@material-ui/core/Container';
-import mainTheme from './styles/mainTheme';
+import themeDefault from './styles/theme-default';
+import Button from '@material-ui/core/Button';
 
 const App: React.FC = () => {
 
   return (
-    <ThemeProvider theme={mainTheme}>
+    <ThemeProvider theme={themeDefault}>
       <Container maxWidth="lg" className="app-container">
-        <div>Content goes here</div>
+        <Button variant="contained" color="primary">
+          Primary
+        </Button>
       </Container>
     </ThemeProvider>
   );
