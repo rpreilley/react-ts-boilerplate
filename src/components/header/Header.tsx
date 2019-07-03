@@ -7,16 +7,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import headerStyles from './headerStyles';
 
-// Set props for component
-type HeaderProps = {
-  title?: string
-};
-
-// Set default props if they aren't passed in and you want to assign a value
-const defaultProps = {
-  title: 'Title'
-}
-
 const Header: React.FC<HeaderProps> = (props) => {
 
   // Hook into headerStyles defined for component and set to a variable
@@ -37,6 +27,16 @@ const Header: React.FC<HeaderProps> = (props) => {
       </AppBar>
     </div>
   );
+}
+
+// Define interface for component props
+interface HeaderProps {
+  title?: string
+};
+
+// Set default props
+Header.defaultProps = {
+  title: 'Title'
 }
 
 export default Header;

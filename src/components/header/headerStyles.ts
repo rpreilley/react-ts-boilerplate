@@ -12,7 +12,7 @@ const headerStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       color: theme.palette.common.white
     }
-  }),
+  })
 );
 
 export default headerStyles;

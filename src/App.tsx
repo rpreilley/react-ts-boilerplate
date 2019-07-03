@@ -10,7 +10,7 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={themeDefault}>
-      <Header title="Title"/>
+      <Header />
       <Container maxWidth="lg" className="app-container">
         <Home />
       </Container>
