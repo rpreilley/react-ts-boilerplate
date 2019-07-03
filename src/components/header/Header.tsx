@@ -7,7 +7,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import headerStyles from './headerStyles';
 
-const Header: React.FC<HeaderProps> = (props) => {
+const Header: React.FC<HeaderProps> = props => {
+  const { title } = props;
 
   // Hook into headerStyles defined for component and set to a variable
   const classes = headerStyles();
@@ -20,7 +21,7 @@ const Header: React.FC<HeaderProps> = (props) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            {props.title}
+            {title}
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>

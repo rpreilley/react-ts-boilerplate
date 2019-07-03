@@ -1,9 +1,11 @@
 import React from 'react';
 
+import UserList from '../../containers/UserList';
+
 const Home: React.FC = () => {
   return (
     <div>
-      Hello, World
+      <UserList />
     </div>
   );
 }
