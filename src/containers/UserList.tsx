@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { IAppState } from '../stores/general/store';
-import { IUser } from '../stores/general/reducers/userReducer';
+import { IAppState } from '../reduxStores/general/store';
+import { IUser } from '../reduxStores/general/reducers/userReducer';
 import Grid from '@material-ui/core/Grid';
 
 // Create the components interface
@@ -19,8 +19,8 @@ class UserList extends React.Component<IProps> {
         {users &&
           users.map(user => {
             return (
-              <Grid item xs={6}>
-                <div key={user.name} className="name">
+              <Grid item xs={6} key={user.name}>
+                <div className="name">
                   {user.name}<br/>
                   {user.username}<br/>
                   {user.phone}<br/>

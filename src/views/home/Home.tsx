@@ -1,13 +1,62 @@
 import React from 'react';
+import { observer, inject } from 'mobx-react';
+import Button from '@material-ui/core/Button';
 
 import UserList from '../../containers/UserList';
+import { render } from 'node-sass';
 
-const Home: React.FC = () => {
-  return (
-    <div>
-      <UserList />
-    </div>
-  );
+interface IHome {
+  userStore: { 
+    _fetchUsers(): void 
+    users: any
+  }
 }
+
+@inject('userStore')
+@observer
+class Home extends React.Component<IHome> {
+  static defaultProps = {
+    userStore: {
+      name: ''
+    }
+  }
+  constructor(props:any) {
+    super(props);
+    this.state = {
+
+    }
+  }
+
+  componentDidMount() {
+    console.log(this.props.userStore.users)
+  }
+
+  render() {
+    return(
+      <div>
+        <p>Home Component</p>
+        <Button color="inherit" onClick={() => this.props.userStore._fetchUsers()}>Test</Button>
+        <div>
+          { this.props.userStore.users.map((value:{name?: string}, index:number) => {
+            return <p key={index}>{value.name}</p>
+          }) }
+        </div>
+      </div>
+    )
+  }
+
+}
+
+
+// Home component as functional component
+
+// const Home: React.FC = () => {
+//   return (
+//     <div>
+//       {/* <UserList /> */}
+//       Hello
+//     </div>
+//   );
+// }
 
 export default Home;

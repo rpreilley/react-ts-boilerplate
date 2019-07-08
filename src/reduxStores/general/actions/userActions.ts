@@ -1,4 +1,4 @@
-// Redux actions are payloads of information that send data from your applicatoin to your store
+// Redux actions are payloads of information that send data from your application to your store
 // They are the ONLY source of information for the store
 
 // Import redux types
