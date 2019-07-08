@@ -7,6 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import headerStyles from './headerStyles';
 
+// React functional component
 const Header: React.FC<HeaderProps> = props => {
   const { title } = props;
 
