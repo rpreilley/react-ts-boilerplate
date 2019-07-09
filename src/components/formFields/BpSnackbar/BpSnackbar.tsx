@@ -9,6 +9,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import CloseIcon from '@material-ui/icons/Close';
 import WarningIcon from '@material-ui/icons/Warning';
 import clsx from 'clsx';
+import { observer, inject } from 'mobx-react';
 
 const variantIcon = {
   success: CheckCircleIcon,
@@ -24,7 +25,7 @@ export interface Props {
   variant: keyof typeof variantIcon;
 }
 
-const BpSnackbar: React.FC<BpSnackbarProps> = props => {
+const BpSnackbar: React.FC<BpSnackbarProps> = inject('generalStore')(observer((props) => {
   const classes = bpSnackbarStyles();
 
   const Icon = variantIcon[props.variant!];
@@ -65,7 +66,7 @@ const BpSnackbar: React.FC<BpSnackbarProps> = props => {
     />
       </Snackbar>
   );
-}
+}))
 
 enum anchorOriginHorizontalEnum {
   LEFT = 'left',
@@ -88,7 +89,7 @@ interface BpSnackbarProps {
   onClose: Function
   open: boolean
   transitionDuration?: (number | {enter?: number, exit?: number})
-  variant?: keyof typeof variantIcon;
+  variant?: keyof typeof variantIcon
 }
 
 BpSnackbar.defaultProps = {

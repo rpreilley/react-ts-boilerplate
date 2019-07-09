@@ -11,7 +11,7 @@ interface IHome {
     users: any
   },
   generalStore: {
-    _updateSnackbarStatus(): void
+    _updateSnackbarStatus(data: {message: string}): void
     snackbarStatus: boolean
   }
 }
@@ -43,18 +43,16 @@ class Home extends React.Component<IHome, IState> {
   }
 
   // Handle on close function of the global snackbar
-  handleClick = () => {
-    this.setState({
-      snackbarOpen: !this.state.snackbarOpen
-    })
+  handleClick = (data: {message: string}) => {
+    this.props.generalStore._updateSnackbarStatus(data);
   } 
 
   render() {
     return(
       <div className="">
         <p>Home Component</p>
-        <BpSnackbar open={this.state.snackbarOpen} onClose={this.handleClick}/>
-        <Button color="inherit" onClick={this.handleClick}>Test snackbar</Button>
+        <BpSnackbar open={this.props.generalStore.snackbarStatus} onClose={this.handleClick}/>
+        <Button color="inherit" onClick={() => this.handleClick({message: 'Hello, World'})}>Test snackbar</Button>
       </div>
     )
   }
