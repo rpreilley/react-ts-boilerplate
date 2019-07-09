@@ -24,10 +24,6 @@ class Home extends React.Component<IHome> {
     }
   }
 
-  componentDidMount() {
-    console.log(this.props.userStore.users)
-  }
-
   render() {
     return(
       <div>
