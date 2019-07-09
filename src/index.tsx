@@ -7,9 +7,11 @@ import * as serviceWorker from './serviceWorker';
 // Mobx Store: Make the store available to all container components in the app without passing it explicitly
 import { Provider } from 'mobx-react';
 import { userStore } from './mobxStores/userStore';
+import { generalStore } from './mobxStores/generalStore';
 
 const stores = {
-  userStore
+  userStore,
+  generalStore
 }
 
 interface IProps {
