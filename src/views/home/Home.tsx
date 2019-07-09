@@ -2,9 +2,6 @@ import React from 'react';
 import { observer, inject } from 'mobx-react';
 import Button from '@material-ui/core/Button';
 
-import UserList from '../../containers/UserList';
-import { render } from 'node-sass';
-
 interface IHome {
   userStore: { 
     _fetchUsers(): void 

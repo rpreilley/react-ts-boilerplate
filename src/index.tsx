@@ -4,14 +4,6 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-// Redux Store: Make the store available to all container components in the app without passing it explicitly
-// import { Provider } from 'react-redux'
-// Import the store function and state
-import configureStore, { IAppState } from './reduxStores/general/store';
-import { getAllUsers } from './reduxStores/general/actions/userActions';
-// Store type from Redux
-// import { Store } from 'redux';
-
 // Mobx Store: Make the store available to all container components in the app without passing it explicitly
 import { Provider } from 'mobx-react';
 import { userStore } from './mobxStores/userStore';
