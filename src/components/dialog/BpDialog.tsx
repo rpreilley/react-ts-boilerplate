@@ -27,7 +27,7 @@ interface BpDialogProps {
 
 const BpDialog: React.FC<BpDialogProps> = inject('generalStore')(observer((props) => {
   const classes = bpDialogStyles();
-  
+
   function handleClose(event: React.SyntheticEvent | React.MouseEvent, reason?: string) {
     if (reason === 'clickaway') {
       return;
@@ -51,6 +51,7 @@ const BpDialog: React.FC<BpDialogProps> = inject('generalStore')(observer((props
       open={ props.generalStore!.dialogStatus }
       onClose={ handleClose }
       disableBackdropClick={ true }
+      className={classes.dialog}
     >
       <DialogTitle>
         { props.title }

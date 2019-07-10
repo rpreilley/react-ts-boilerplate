@@ -8,8 +8,7 @@ import Home from './views/home/Home';
 import { observer, inject } from 'mobx-react';
 import BpSnackbar from './components/BpSnackbar/BpSnackbar';
 import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum } from './lib/enums/snackbarEnum';
-import BpDialog from './components/dialog/BpDialog'
-import BpTextfield from "./components/formFields/BpTextField/BpTextField"
+import BpDialog from './components/dialog/BpDialog';
 
 interface IApp {
   userStore: {
@@ -36,11 +35,9 @@ interface IAppState {
 let buttons = [
   {
     label: "Submit",
-    callback: () => console.log("wazzam")
-  },
-  {
-    label: "Submit pt. 2",
-    callback: () => console.log("boi")
+    callback: () => {
+      console.log("Hitting the submit button callback function");
+    }
   }
 ]
 
@@ -66,19 +63,6 @@ class App extends React.Component<IApp, IAppState> {
     }
   }
 
-  // componentDidMount() {
-  //   let data = {
-  //     snackbarMessage: 'Hello, World',
-  //     snackbarAnchorOrigin: {
-  //       horizontal: anchorOriginHorizontalEnum.CENTER,
-  //       vertical: anchorOriginVerticalEnum.TOP
-  //     },
-  //     snackbarVariant: 'success'
-  //   }
-
-  //   this.triggerSnackbar(data);
-  // }
-
   // Handle on close function of the global snackbar
   triggerSnackbar = (data: {
     snackbarTimeout?: number
@@ -92,25 +76,20 @@ class App extends React.Component<IApp, IAppState> {
     this.props.generalStore._updateSnackbarStatus(data);
   }
 
-  testFunction () {
-    console.log("INFO")
-  }
-
   render() {
     return (
       <ThemeProvider theme={theme}>
         <Header />
         <BpSnackbar open={this.props.generalStore.snackbarStatus} />
         <BpDialog
-          title="This is a title"
+          title="Dialog title"
           showCloseButton={true}
           closeButtonLabel="close"
           buttons={buttons}
         >
-          <div style={{ width: '100%'}}>
-            To subscribe to this website, please enter your email address here. We will send updates
+          <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed dolor ac felis mattis ornare non id elit. Aenean mattis lorem elit, eget consectetur mi gravida non. Nulla gravida est neque, ac tempus ipsum tempus quis. Pellentesque at mauris imperdiet, cursus dolor ut, laoreet lacus.
           </div>
-          <BpTextfield />
         </BpDialog>
         <Container maxWidth="lg" className="app-container">
           <Home />

@@ -12,7 +12,7 @@ interface ISnackbar {
 }
 
 export default class GeneralStore {
-  // Snackbar Observable
+  // Snackbar Observables
   @observable snackbarStatus?: boolean;
   @observable snackbarMessage?: string;
   @observable snackbarTimeout?: number;
@@ -21,7 +21,7 @@ export default class GeneralStore {
     horizontal?: anchorOriginHorizontalEnum,
     vertical?: anchorOriginVerticalEnum
   }
-  // Dialog Observable
+  // Dialog Observables
   @observable dialogStatus?: boolean;
 
   constructor() {
