@@ -1,5 +1,4 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { amber, green, blue } from '@material-ui/core/colors';
 
 const headerStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -7,16 +6,16 @@ const headerStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(0.5),
     },
     success: {
-      backgroundColor: green[600],
+      backgroundColor: theme.customPalette.success.main
     },
     error: {
       backgroundColor: theme.palette.error.dark,
     },
     info: {
-      backgroundColor: blue[500]
+      backgroundColor: theme.customPalette.info.main
     },
     warning: {
-      backgroundColor: amber[700],
+      backgroundColor: theme.customPalette.warning.main
     },
     icon: {
       fontSize: 20,
@@ -28,7 +27,7 @@ const headerStyles = makeStyles((theme: Theme) =>
     message: {
       display: 'flex',
       alignItems: 'center',
-    },
+    }
   })
 );
 

@@ -7,9 +7,13 @@ const headerStyles = makeStyles((theme: Theme) =>
     },
     menuButton: {
       marginRight: theme.spacing(2),
+      color: theme.palette.common.white
     },
     title: {
       flexGrow: 1,
+      color: theme.palette.common.white
+    },
+    button: {
       color: theme.palette.common.white
     }
   })

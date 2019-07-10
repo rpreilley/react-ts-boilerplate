@@ -24,7 +24,7 @@ const Header: React.FC<HeaderProps> = props => {
           <Typography variant="h6" className={classes.title}>
             {title}
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button className={classes.button}>Login</Button>
         </Toolbar>
       </AppBar>
     </div>
