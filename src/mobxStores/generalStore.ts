@@ -12,6 +12,7 @@ interface ISnackbar {
 }
 
 export default class GeneralStore {
+  // Snackbar Observable
   @observable snackbarStatus?: boolean;
   @observable snackbarMessage?: string;
   @observable snackbarTimeout?: number;
@@ -20,6 +21,8 @@ export default class GeneralStore {
     horizontal?: anchorOriginHorizontalEnum,
     vertical?: anchorOriginVerticalEnum
   }
+  // Dialog Observable
+  @observable dialogStatus?: boolean;
 
   constructor() {
     // Snackbar defaults
@@ -31,6 +34,8 @@ export default class GeneralStore {
       horizontal: anchorOriginHorizontalEnum.CENTER,
       vertical: anchorOriginVerticalEnum.TOP
     };
+    // Dialog defaults
+    this.dialogStatus = false;
   }
 
   @action
@@ -49,6 +54,16 @@ export default class GeneralStore {
   @action
   _closeSnackbar() {
     this.snackbarStatus = false;
+  }
+
+  @action
+  _openDialog() {
+    this.dialogStatus = true;
+  }
+
+  @action
+  _closeDialog() {
+    this.dialogStatus = false;
   }
 
 }

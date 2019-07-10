@@ -3,13 +3,13 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 const headerStyles = makeStyles((theme: Theme) =>
   createStyles({
     close: {
-      padding: theme.spacing(0.5),
+      padding: theme.spacing(0.5)
     },
     success: {
       backgroundColor: theme.customPalette.success.main
     },
     error: {
-      backgroundColor: theme.palette.error.dark,
+      backgroundColor: theme.palette.error.main
     },
     info: {
       backgroundColor: theme.customPalette.info.main
@@ -22,11 +22,11 @@ const headerStyles = makeStyles((theme: Theme) =>
     },
     iconVariant: {
       opacity: 0.9,
-      marginRight: theme.spacing(1),
+      marginRight: theme.spacing(1)
     },
     message: {
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'center'
     }
   })
 );
