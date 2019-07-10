@@ -8,6 +8,24 @@ import clsx from 'clsx';
 import { observer, inject } from 'mobx-react';
 import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum, variantIcon } from '../../lib/enums/snackbarEnum';
 
+interface IGeneralStore {
+  snackbarStatus: boolean
+  snackbarMessage: string
+  snackbarTimeout: number
+  snackbarVariant: keyof typeof variantIcon
+  snackbarAnchorOrigin: {
+    horizontal: anchorOriginHorizontalEnum
+    vertical: anchorOriginVerticalEnum
+  }
+  _updateSnackbarStatus(): void
+  _closeSnackbar(): void
+}
+
+interface BpSnackbarProps {
+  generalStore?: IGeneralStore
+  open: boolean
+}
+
 const BpSnackbar: React.FC<BpSnackbarProps> = inject('generalStore')(observer((props) => {
   const classes = bpSnackbarStyles();
 
@@ -50,23 +68,5 @@ const BpSnackbar: React.FC<BpSnackbarProps> = inject('generalStore')(observer((p
       </Snackbar>
   );
 }))
-
-interface IGeneralStore {
-  snackbarStatus: boolean
-  snackbarMessage: string
-  snackbarTimeout: number
-  snackbarVariant: keyof typeof variantIcon
-  snackbarAnchorOrigin: {
-    horizontal: anchorOriginHorizontalEnum
-    vertical: anchorOriginVerticalEnum
-  }
-  _updateSnackbarStatus(): void
-  _closeSnackbar(): void
-}
-
-interface BpSnackbarProps {
-  generalStore?: IGeneralStore
-  open: boolean
-}
 
 export default BpSnackbar;

@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider } from '@material-ui/styles';
 import './App.scss';
 import Container from '@material-ui/core/Container';
-import themeDefault from './styles/theme-default';
+import theme from './styles/theme/theme-default';
 import Header from './components/header/Header';
 import Home from './views/home/Home';
 
@@ -82,7 +82,7 @@ class App extends React.Component<IApp, IAppState> {
 
   render() {
     return (
-      <ThemeProvider theme={themeDefault}>
+      <ThemeProvider theme={theme}>
         <Header />
         <BpSnackbar open={this.props.generalStore.snackbarStatus} />
         <Container maxWidth="lg" className="app-container">
