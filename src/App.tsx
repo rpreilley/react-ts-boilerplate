@@ -54,18 +54,18 @@ class App extends React.Component<IApp, IAppState> {
     }
   }
 
-  // componentDidMount() {
-  //   let data = {
-  //     snackbarMessage: 'Hello, World',
-  //     snackbarAnchorOrigin: {
-  //       horizontal: anchorOriginHorizontalEnum.CENTER,
-  //       vertical: anchorOriginVerticalEnum.TOP
-  //     },
-  //     snackbarVariant: 'warning'
-  //   }
+  componentDidMount() {
+    let data = {
+      snackbarMessage: 'Hello, World',
+      snackbarAnchorOrigin: {
+        horizontal: anchorOriginHorizontalEnum.CENTER,
+        vertical: anchorOriginVerticalEnum.TOP
+      },
+      snackbarVariant: 'warning'
+    }
 
-  //   this.triggerSnackbar(data);
-  // }
+    this.triggerSnackbar(data);
+  }
 
   // Handle on close function of the global snackbar
   triggerSnackbar = (data: {
@@ -75,6 +75,7 @@ class App extends React.Component<IApp, IAppState> {
       horizontal?: anchorOriginHorizontalEnum
       vertical?: anchorOriginVerticalEnum
     }
+    snackbarVarient?: string
   }) => {
     this.props.generalStore._updateSnackbarStatus(data);
   }

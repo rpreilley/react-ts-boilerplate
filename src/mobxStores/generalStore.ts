@@ -1,16 +1,5 @@
 import { observable, action } from 'mobx';
-import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum } from '../lib/enums/snackbarEnum';
-import WarningIcon from '@material-ui/icons/Warning';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import ErrorIcon from '@material-ui/icons/Error';
-import InfoIcon from '@material-ui/icons/Info';
-
-const variantIcon = {
-  success: CheckCircleIcon,
-  warning: WarningIcon,
-  error: ErrorIcon,
-  info: InfoIcon,
-};
+import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum, variantIcon } from '../lib/enums/snackbarEnum';
 
 interface ISnackbar {
   snackbarMessage?: string
@@ -33,8 +22,9 @@ export default class GeneralStore {
   }
 
   constructor() {
+    // Snackbar defaults
     this.snackbarStatus = false;
-    this.snackbarMessage = '';
+    this.snackbarMessage = 'Default message';
     this.snackbarTimeout = 3000;
     this.snackbarVariant = 'info';
     this.snackbarAnchorOrigin = {
@@ -47,14 +37,18 @@ export default class GeneralStore {
   _updateSnackbarStatus(data: ISnackbar) {
     // Set snackbar status to opposite of what it is currently set to
     this.snackbarStatus = !this.snackbarStatus;
-
-    // If data is detected, check e
-    if (data) {
-      this.snackbarMessage = data.snackbarMessage ? data.snackbarMessage : ''
-      this.snackbarTimeout = data.snackbarTimeout ? data.snackbarTimeout : 3000
-      this.snackbarAnchorOrigin = data.snackbarAnchorOrigin ? data.snackbarAnchorOrigin : this.snackbarAnchorOrigin
-      this.snackbarVariant = data.snackbarVariant ? data.snackbarVariant : this.snackbarVariant
+    this.snackbarMessage = data.snackbarMessage ? data.snackbarMessage : 'Default message'
+    this.snackbarTimeout = data.snackbarTimeout ? data.snackbarTimeout : 3000
+    this.snackbarAnchorOrigin = data.snackbarAnchorOrigin ? data.snackbarAnchorOrigin : {
+      horizontal: anchorOriginHorizontalEnum.CENTER,
+      vertical: anchorOriginVerticalEnum.TOP
     }
+    this.snackbarVariant = data.snackbarVariant ? data.snackbarVariant : 'info'
+  }
+
+  @action
+  _closeSnackbar() {
+    this.snackbarStatus = false;
   }
 
 }

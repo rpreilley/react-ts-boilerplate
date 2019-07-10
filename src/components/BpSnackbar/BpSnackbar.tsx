@@ -3,21 +3,10 @@ import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import IconButton from '@material-ui/core/IconButton';
 import bpSnackbarStyles from './bpSnackbarStyles';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import ErrorIcon from '@material-ui/icons/Error';
-import InfoIcon from '@material-ui/icons/Info';
 import CloseIcon from '@material-ui/icons/Close';
-import WarningIcon from '@material-ui/icons/Warning';
 import clsx from 'clsx';
 import { observer, inject } from 'mobx-react';
-import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum } from '../../lib/enums/snackbarEnum';
-
-const variantIcon = {
-  success: CheckCircleIcon,
-  warning: WarningIcon,
-  error: ErrorIcon,
-  info: InfoIcon,
-};
+import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum, variantIcon } from '../../lib/enums/snackbarEnum';
 
 const BpSnackbar: React.FC<BpSnackbarProps> = inject('generalStore')(observer((props) => {
   const classes = bpSnackbarStyles();
@@ -28,7 +17,7 @@ const BpSnackbar: React.FC<BpSnackbarProps> = inject('generalStore')(observer((p
     if (reason === 'clickaway') {
       return;
     }
-    props.generalStore!._updateSnackbarStatus();
+    props.generalStore!._closeSnackbar();
   }
 
   return (
@@ -72,16 +61,12 @@ interface IGeneralStore {
     vertical: anchorOriginVerticalEnum
   }
   _updateSnackbarStatus(): void
+  _closeSnackbar(): void
 }
 
 interface BpSnackbarProps {
   generalStore?: IGeneralStore
   open: boolean
-  transitionDuration?: (number | {enter?: number, exit?: number})
-}
-
-BpSnackbar.defaultProps = {
-  transitionDuration: 500,
 }
 
 export default BpSnackbar;
