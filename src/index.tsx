@@ -14,15 +14,11 @@ const stores = {
   generalStore
 }
 
-interface IProps {
-  // store: Store<IAppState>
-}
-
 /* 
 Create a root component that receives the store via props
 and wraps the App component with Provider, giving props to containers
 */
-const Root: React.FC<IProps> = props => {
+const Root: React.FC = props => {
   return (
     <Provider {...stores}>
       <App />
