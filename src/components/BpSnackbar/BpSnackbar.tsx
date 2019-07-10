@@ -10,6 +10,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import WarningIcon from '@material-ui/icons/Warning';
 import clsx from 'clsx';
 import { observer, inject } from 'mobx-react';
+import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum } from '../../lib/enums/snackbarEnum';
 
 const variantIcon = {
   success: CheckCircleIcon,
@@ -18,38 +19,31 @@ const variantIcon = {
   info: InfoIcon,
 };
 
-export interface Props {
-  className?: string;
-  message?: string;
-  onClose?: () => void;
-  variant: keyof typeof variantIcon;
-}
-
 const BpSnackbar: React.FC<BpSnackbarProps> = inject('generalStore')(observer((props) => {
   const classes = bpSnackbarStyles();
 
-  const Icon = variantIcon[props.variant!];
+  const Icon = variantIcon[props.generalStore!.snackbarVariant];
 
   function handleClose(event: React.SyntheticEvent | React.MouseEvent, reason?: string) {
     if (reason === 'clickaway') {
       return;
     }
-    props.onClose()
+    props.generalStore!._updateSnackbarStatus();
   }
 
   return (
     <Snackbar
-      anchorOrigin={props.anchorOrigin}
-      open={props.open}
-      autoHideDuration={props.autoHideDuration}
+      anchorOrigin={props.generalStore!.snackbarAnchorOrigin}
+      open={props.generalStore!.snackbarStatus}
+      autoHideDuration={props.generalStore!.snackbarTimeout}
       onClose={handleClose}
     >
     <SnackbarContent
-      className={clsx(classes[props.variant!])}
+      className={clsx(classes[props.generalStore!.snackbarVariant])}
       message={
         <span id="client-snackbar" className={classes.message}>
           <Icon className={clsx(classes.icon, classes.iconVariant)} />
-          { props.message }
+          { props.generalStore!.snackbarMessage }
         </span>
       }
       action={[
@@ -68,40 +62,26 @@ const BpSnackbar: React.FC<BpSnackbarProps> = inject('generalStore')(observer((p
   );
 }))
 
-enum anchorOriginHorizontalEnum {
-  LEFT = 'left',
-  CENTER = 'center',
-  RIGHT = 'right'
-}
-
-enum anchorOriginVerticalEnum {
-  TOP = 'top',
-  BOTTOM = 'bottom'
+interface IGeneralStore {
+  snackbarStatus: boolean
+  snackbarMessage: string
+  snackbarTimeout: number
+  snackbarVariant: keyof typeof variantIcon
+  snackbarAnchorOrigin: {
+    horizontal: anchorOriginHorizontalEnum
+    vertical: anchorOriginVerticalEnum
+  }
+  _updateSnackbarStatus(): void
 }
 
 interface BpSnackbarProps {
-  anchorOrigin?: {
-    horizontal: anchorOriginHorizontalEnum, 
-    vertical: anchorOriginVerticalEnum
-  }
-  autoHideDuration?: number
-  message?: string
-  onClose: Function
+  generalStore?: IGeneralStore
   open: boolean
   transitionDuration?: (number | {enter?: number, exit?: number})
-  variant?: keyof typeof variantIcon
 }
 
 BpSnackbar.defaultProps = {
-  anchorOrigin: {
-    horizontal: anchorOriginHorizontalEnum.CENTER, 
-    vertical: anchorOriginVerticalEnum.TOP
-  },
-  autoHideDuration: 3000,
-  message: 'Snackbar message',
-  open: false,
   transitionDuration: 500,
-  variant: 'success'
 }
 
 export default BpSnackbar;
