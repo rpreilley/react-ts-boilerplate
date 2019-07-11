@@ -3,12 +3,13 @@ import { ThemeProvider } from '@material-ui/styles';
 import './App.scss';
 import Container from '@material-ui/core/Container';
 import theme from './styles/theme/theme-default';
-import Header from './components/header/Header';
+import Header from './components/BpHeader/BpHeader';
 import Home from './views/home/Home';
 import { observer, inject } from 'mobx-react';
 import BpSnackbar from './components/BpSnackbar/BpSnackbar';
 import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum } from './lib/enums/snackbarEnum';
-import BpDialog from './components/dialog/BpDialog';
+import BpDialog from './components/BpDialog/BpDialog';
+import BpAppDrawer from './components/BpAppDrawer/BpAppDrawer';
 
 interface IApp {
   userStore: {
@@ -80,6 +81,7 @@ class App extends React.Component<IApp, IAppState> {
     return (
       <ThemeProvider theme={theme}>
         <Header />
+        <BpAppDrawer />
         <BpSnackbar open={this.props.generalStore.snackbarStatus} />
         <BpDialog
           title="Dialog title"

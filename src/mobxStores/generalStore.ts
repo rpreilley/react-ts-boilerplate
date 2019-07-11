@@ -1,6 +1,7 @@
 import { observable, action } from 'mobx';
 import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum, variantIcon } from '../lib/enums/snackbarEnum';
 
+// Snackbar interface
 interface ISnackbar {
   snackbarMessage?: string
   snackbarTimeout?: number
@@ -24,6 +25,9 @@ export default class GeneralStore {
   // Dialog Observables
   @observable dialogStatus?: boolean;
 
+  // AppDrawer Observables
+  @observable appDrawerStatus?: boolean;
+
   constructor() {
     // Snackbar defaults
     this.snackbarStatus = false;
@@ -34,10 +38,15 @@ export default class GeneralStore {
       horizontal: anchorOriginHorizontalEnum.CENTER,
       vertical: anchorOriginVerticalEnum.TOP
     };
+
     // Dialog defaults
     this.dialogStatus = false;
+
+    // AppDrawer defaults
+    this.appDrawerStatus = false;
   }
 
+  // Snackbar actions
   @action
   _updateSnackbarStatus(data: ISnackbar) {
     // Set snackbar status to opposite of what it is currently set to
@@ -56,6 +65,7 @@ export default class GeneralStore {
     this.snackbarStatus = false;
   }
 
+  //Dialog actions
   @action
   _openDialog() {
     this.dialogStatus = true;
@@ -66,18 +76,17 @@ export default class GeneralStore {
     this.dialogStatus = false;
   }
 
-}
+  // AppDrawer actions
+  @action
+  _openAppDrawer() {
+    this.appDrawerStatus = true;
+  }
 
-// Example way to call the snackbar and pass data
-// triggerSnackbar = (data: {
-//   snackbarTimeout?: number
-//   snackbarMessage?: string
-//   snackbarAnchorOrigin?: {
-//     horizontal?: anchorOriginHorizontalEnum
-//     vertical?: anchorOriginVerticalEnum
-//   }
-// }) => {
-//   this.props.generalStore._updateSnackbarStatus(data);
-// }
+  @action
+  _closeAppDrawer() {
+    this.appDrawerStatus = false;
+  }
+
+}
 
 export const generalStore = new GeneralStore();
