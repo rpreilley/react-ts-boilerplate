@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom'
-import Routes from './router/Routes'
+import { BrowserRouter as Router } from 'react-router-dom';
+import Routes from './router/Routes';
 import { ThemeProvider } from '@material-ui/styles';
 import './App.scss';
 import Container from '@material-ui/core/Container';
