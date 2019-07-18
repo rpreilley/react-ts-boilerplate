@@ -33,6 +33,7 @@ const Routes: React.FC = () => {
         {routes.map((route) => (
           <Route
             exact
+            key={route.name}
             path={route.path}
             component={route.component}
           />
