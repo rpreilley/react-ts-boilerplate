@@ -6,7 +6,6 @@ import './App.scss';
 import Container from '@material-ui/core/Container';
 import theme from './styles/theme/theme-default';
 import Header from './components/BpHeader/BpHeader';
-import Home from './views/home/Home';
 import { observer, inject } from 'mobx-react';
 import BpSnackbar from './components/BpSnackbar/BpSnackbar';
 import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum } from './lib/enums/snackbarEnum';

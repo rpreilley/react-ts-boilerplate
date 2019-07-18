@@ -13,6 +13,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { useTheme } from '@material-ui/core/styles';
+import { routes } from "../../router/Routes"
+import { Link } from 'react-router-dom'
 
 interface IGeneralStore {
   appDrawerStatus: boolean
@@ -50,11 +52,18 @@ const BpAppDrawer: React.FC<BpAppDrawerProps> = inject('generalStore')(observer(
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
+          {routes.map((route) => (
+            <Link to={route.path} className={classes.list}>
+              <ListItem button key={route.name}>
+                { 
+                  route.icon && 
+                  <ListItemIcon>
+                    { React.createElement(route.icon) }
+                  </ListItemIcon> 
+                }
+                <ListItemText primary={route.name} />
+              </ListItem>              
+            </Link>
           ))}
         </List>
         <Divider />

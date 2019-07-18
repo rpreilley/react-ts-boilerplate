@@ -27,6 +27,10 @@ const brAppDrawerStyles = makeStyles((theme: Theme) =>
     hide: {
       display: 'none',
     },
+    list: {
+      textDecoration: 'none',
+      color: theme.palette.text.primary
+    },
     drawer: {
       width: drawerWidth,
       flexShrink: 0,
