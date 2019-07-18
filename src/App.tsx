@@ -1,4 +1,6 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom'
+import Routes from './router/Routes'
 import { ThemeProvider } from '@material-ui/styles';
 import './App.scss';
 import Container from '@material-ui/core/Container';
@@ -79,24 +81,26 @@ class App extends React.Component<IApp, IAppState> {
 
   render() {
     return (
-      <ThemeProvider theme={theme}>
-        <Header />
-        <BpAppDrawer />
-        <BpSnackbar open={this.props.generalStore.snackbarStatus} />
-        <BpDialog
-          title="Dialog title"
-          showCloseButton={true}
-          closeButtonLabel="close"
-          buttons={buttons}
-        >
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed dolor ac felis mattis ornare non id elit. Aenean mattis lorem elit, eget consectetur mi gravida non. Nulla gravida est neque, ac tempus ipsum tempus quis. Pellentesque at mauris imperdiet, cursus dolor ut, laoreet lacus.
-          </div>
-        </BpDialog>
-        <Container maxWidth="lg" className="app-container">
-          <Home />
-        </Container>
-      </ThemeProvider>
+      <Router>
+        <ThemeProvider theme={theme}>
+          <Header />
+          <BpAppDrawer />
+          <BpSnackbar open={this.props.generalStore.snackbarStatus} />
+          <BpDialog
+            title="Dialog title"
+            showCloseButton={true}
+            closeButtonLabel="close"
+            buttons={buttons}
+          >
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed dolor ac felis mattis ornare non id elit. Aenean mattis lorem elit, eget consectetur mi gravida non. Nulla gravida est neque, ac tempus ipsum tempus quis. Pellentesque at mauris imperdiet, cursus dolor ut, laoreet lacus.
+            </div>
+          </BpDialog>
+          <Container maxWidth="lg" className="app-container">
+            <Routes />
+          </Container>
+        </ThemeProvider>
+      </Router>
     )
   }
 
