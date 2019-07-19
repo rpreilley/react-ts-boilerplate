@@ -11,7 +11,7 @@ import clsx from 'clsx';
 
 interface IGeneralStore {
   _openDialog(): void
-  _openAppDrawer(): void
+  _toggleAppDrawer(): void
   appDrawerStatus: boolean
 }
 
@@ -32,18 +32,19 @@ const BpHeader: React.FC<HeaderProps> = inject('generalStore')(observer((props) 
   }
 
   function handleDrawerOpen(event: React.SyntheticEvent | React.MouseEvent, reason?: string) {
-    props.generalStore!._openAppDrawer();
+    props.generalStore!._toggleAppDrawer();
   }
 
   return (
     <div className={classes.root}>
-      <AppBar 
+      <AppBar
         position="relative"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: props.generalStore!.appDrawerStatus,
         })}
+        style={{ boxShadow: 'none' }}
       >
-        <Toolbar>
+        <Toolbar variant='dense'>
           <IconButton edge="start" color="inherit" aria-label="Menu" className={classes.menuButton} onClick={handleDrawerOpen}>
             <MenuIcon />
           </IconButton>

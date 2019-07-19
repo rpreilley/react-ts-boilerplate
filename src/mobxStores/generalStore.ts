@@ -87,6 +87,11 @@ export default class GeneralStore {
     this.appDrawerStatus = false;
   }
 
+  @action
+  _toggleAppDrawer() {
+    this.appDrawerStatus = !this.appDrawerStatus
+  }
+
 }
 
 export const generalStore = new GeneralStore();

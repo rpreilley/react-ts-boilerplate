@@ -31,7 +31,7 @@ const headerStyles = makeStyles((theme: Theme) =>
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
-      }),
+      })
     },
   })
 );

@@ -50,6 +50,14 @@ const brAppDrawerStyles = makeStyles((theme: Theme) =>
         duration: theme.transitions.duration.leavingScreen,
       }),
       overflowX: 'hidden',
+      width: 0
+    },
+    drawerMiniVariant: {
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      overflowX: 'hidden',
       width: theme.spacing(7) + 1,
       [theme.breakpoints.up('sm')]: {
         width: theme.spacing(7) + 1,
@@ -59,8 +67,7 @@ const brAppDrawerStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignItems: 'center',
       padding: '0 8px',
-      ...theme.mixins.toolbar,
-      justifyContent: 'flex-end',
+      justifyContent: 'flex-end'
     }
   })
 );
