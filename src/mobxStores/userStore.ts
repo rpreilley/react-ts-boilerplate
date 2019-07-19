@@ -1,33 +1,50 @@
 import { observable, action } from 'mobx';
-import axios from 'axios';
+import ApiService from '../services/ApiService';
 
 export default class UserStore {
-  @observable users: Array<object>;
-  @observable initialName: string;
+  @observable userId: Number;
+  @observable firstName: string;
+  @observable lastName: string;
+  @observable userSession: Object;
+  @observable emailAddress: string;
 
   constructor() {
-    this.users = [];
-    this.initialName = "Testing here";
+    this.userId = null!;
+    this.firstName = '';
+    this.lastName = '';
+    this.emailAddress = '';
+    this.userSession = {};
   }
 
   @action
-  loadUsers(data: Array<object>) {
-    let users: Array<object> = [];
-    data.forEach(function(d) {
-      users.push(d);
-    })
+  authenticateUser(data: Object) {
+    // Url needed for authentication endpoint
+    const url = '';
 
-    this.users = users;
+    // Map out data from authentication form being passed in to send to endpoint
+
+    // Pass any additional options, like headers
+    const options = {
+
+    };
+
+    ApiService.post(url, data, options)
+      .then((response) => {
+        // If successful response, set returned user values as store values
+        console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      })
   }
 
   @action
-  async _fetchUsers() {
-    try {
-      const response = await axios.get('https://jsonplaceholder.typicode.com/users');
-      this.loadUsers(response.data)
-    } catch (err) {
-      console.error(err);
-    }
+  clearUserSession() {
+    this.userId = null!;
+    this.firstName = '';
+    this.lastName = '';
+    this.emailAddress = '';
+    this.userSession = {};
   }
 
 }

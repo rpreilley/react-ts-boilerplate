@@ -8,21 +8,22 @@ const brAppDrawerStyles = makeStyles((theme: Theme) =>
       display: 'flex',
     },
     appBar: {
+      zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
     },
     appBarShift: {
-      width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
+      width: `calc(100% - ${drawerWidth}px)`,
       transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
     },
     menuButton: {
-      marginRight: theme.spacing(2),
+      marginRight: 36,
     },
     hide: {
       display: 'none',
@@ -34,9 +35,25 @@ const brAppDrawerStyles = makeStyles((theme: Theme) =>
     drawer: {
       width: drawerWidth,
       flexShrink: 0,
+      whiteSpace: 'nowrap'
     },
-    drawerPaper: {
+    drawerOpen: {
       width: drawerWidth,
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    drawerClose: {
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      overflowX: 'hidden',
+      width: theme.spacing(7) + 1,
+      [theme.breakpoints.up('sm')]: {
+        width: theme.spacing(7) + 1,
+      },
     },
     drawerHeader: {
       display: 'flex',
@@ -44,22 +61,6 @@ const brAppDrawerStyles = makeStyles((theme: Theme) =>
       padding: '0 8px',
       ...theme.mixins.toolbar,
       justifyContent: 'flex-end',
-    },
-    content: {
-      flexGrow: 1,
-      padding: theme.spacing(3),
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      marginLeft: -drawerWidth,
-    },
-    contentShift: {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
     }
   })
 );
