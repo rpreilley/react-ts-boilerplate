@@ -30,9 +30,10 @@ export const routes: Array<IRoute> = [
 const Routes: React.FC = () => {
     return (
       <Switch>
-        {routes.map((route) => (
+        {routes.map((route, index) => (
           <Route
             exact
+            key={index}
             path={route.path}
             component={route.component}
           />

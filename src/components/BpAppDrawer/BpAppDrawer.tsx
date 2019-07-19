@@ -52,8 +52,8 @@ const BpAppDrawer: React.FC<BpAppDrawerProps> = inject('generalStore')(observer(
         </div>
         <Divider />
         <List>
-          {routes.map((route) => (
-            <Link to={route.path} className={classes.list}>
+          {routes.map((route, index) => (
+            <Link to={route.path} className={classes.list} key={index}>
               <ListItem button key={route.name}>
                 { 
                   route.icon && 
