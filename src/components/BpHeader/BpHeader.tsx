@@ -37,13 +37,14 @@ const BpHeader: React.FC<HeaderProps> = inject('generalStore')(observer((props) 
 
   return (
     <div className={classes.root}>
-      <AppBar 
+      <AppBar
         position="relative"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: props.generalStore!.appDrawerStatus,
         })}
+        style={{ boxShadow: 'none' }}
       >
-        <Toolbar>
+        <Toolbar variant='dense'>
           <IconButton edge="start" color="inherit" aria-label="Menu" className={classes.menuButton} onClick={handleDrawerOpen}>
             <MenuIcon />
           </IconButton>

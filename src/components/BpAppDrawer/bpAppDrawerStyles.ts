@@ -59,8 +59,7 @@ const brAppDrawerStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignItems: 'center',
       padding: '0 8px',
-      ...theme.mixins.toolbar,
-      justifyContent: 'flex-end',
+      justifyContent: 'flex-end'
     }
   })
 );
