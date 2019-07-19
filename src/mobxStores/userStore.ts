@@ -1,33 +1,23 @@
 import { observable, action } from 'mobx';
-import axios from 'axios';
 
 export default class UserStore {
-  @observable users: Array<object>;
-  @observable initialName: string;
+  @observable userId: Number;
+  @observable firstName: string;
+  @observable lastName: string;
+  @observable userSession: Object;
+  @observable emailAddress: string;
 
   constructor() {
-    this.users = [];
-    this.initialName = "Testing here";
+    this.userId = null!;
+    this.firstName = '';
+    this.lastName = '';
+    this.emailAddress = '';
+    this.userSession = {};
   }
 
   @action
-  loadUsers(data: Array<object>) {
-    let users: Array<object> = [];
-    data.forEach(function(d) {
-      users.push(d);
-    })
+  authenticateUser(data: Object) {
 
-    this.users = users;
-  }
-
-  @action
-  async _fetchUsers() {
-    try {
-      const response = await axios.get('https://jsonplaceholder.typicode.com/users');
-      this.loadUsers(response.data)
-    } catch (err) {
-      console.error(err);
-    }
   }
 
 }
