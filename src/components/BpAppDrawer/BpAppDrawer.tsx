@@ -13,8 +13,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { useTheme } from '@material-ui/core/styles';
-import { routes } from "../../router/Routes"
-import { Link } from 'react-router-dom'
+import { routes } from "../../router/Routes";
+import { Link } from 'react-router-dom';
+import clsx from 'clsx';
+import Tooltip from '@material-ui/core/Tooltip';
 
 interface IGeneralStore {
   appDrawerStatus: boolean
@@ -37,12 +39,17 @@ const BpAppDrawer: React.FC<BpAppDrawerProps> = inject('generalStore')(observer(
   return (
     <div className={classes.root}>
       <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
+        variant="permanent"
         open={props.generalStore!.appDrawerStatus}
+        className={clsx(classes.drawer, {
+          [classes.drawerOpen]: props.generalStore!.appDrawerStatus,
+          [classes.drawerClose]: !props.generalStore!.appDrawerStatus,
+        })}
         classes={{
-          paper: classes.drawerPaper,
+          paper: clsx({
+            [classes.drawerOpen]: props.generalStore!.appDrawerStatus,
+            [classes.drawerClose]: !props.generalStore!.appDrawerStatus,
+          }),
         }}
       >
         <div className={classes.drawerHeader}>
@@ -54,25 +61,29 @@ const BpAppDrawer: React.FC<BpAppDrawerProps> = inject('generalStore')(observer(
         <List>
           {routes.map((route, index) => (
             <Link to={route.path} className={classes.list} key={index}>
-              <ListItem button key={route.name}>
-                { 
-                  route.icon && 
-                  <ListItemIcon>
-                    { React.createElement(route.icon) }
-                  </ListItemIcon> 
-                }
-                <ListItemText primary={route.name} />
-              </ListItem>              
+              <Tooltip title={route.name} placement='right'>
+                <ListItem button key={route.name}>
+                  { 
+                    route.icon && 
+                    <ListItemIcon>
+                      { React.createElement(route.icon) }
+                    </ListItemIcon> 
+                  }
+                  <ListItemText primary={route.name} />
+                </ListItem>  
+              </Tooltip>            
             </Link>
           ))}
         </List>
         <Divider />
         <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
+            <Tooltip title={text} key={index} placement='right'>
+              <ListItem button>
+                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            </Tooltip>
           ))}
         </List>
       </Drawer>

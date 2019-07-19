@@ -7,10 +7,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import headerStyles from './bpHeaderStyles';
 import { observer, inject } from 'mobx-react';
+import clsx from 'clsx';
 
 interface IGeneralStore {
   _openDialog(): void
   _openAppDrawer(): void
+  appDrawerStatus: boolean
 }
 
 // Define interface for component props
@@ -35,7 +37,12 @@ const BpHeader: React.FC<HeaderProps> = inject('generalStore')(observer((props) 
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar 
+        position="relative"
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: props.generalStore!.appDrawerStatus,
+        })}
+      >
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="Menu" className={classes.menuButton} onClick={handleDrawerOpen}>
             <MenuIcon />
