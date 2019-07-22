@@ -27,6 +27,13 @@ export enum sizeEnum {
   MEDIUM = 'medium'
 }
 
+export enum labelPlacementEnum {
+  START = 'start',
+  END = 'end',
+  TOP = 'top',
+  BOTTOM = 'bottom'
+}
+
 export const variantIcon = {
   success: CheckCircleIcon,
   warning: WarningIcon,
