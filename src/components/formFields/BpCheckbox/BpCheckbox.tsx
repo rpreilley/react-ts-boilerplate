@@ -3,18 +3,18 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { colorEnum } from '../../../lib/enums/appEnum';
 
 const BpCheckbox: React.FC<IBpCheckboxProps> = props => {
-    return (
-        <Checkbox
-          id={props.id}
-          checked={props.checked}
-          disabled={props.disabled}
-          disableRipple={props.disableRipple}
-          onChange={props.onChange}
-          value={props.value}
-          color={props.color}
-          inputProps={props.inputProps}
-      />
-    )
+  return (
+    <Checkbox
+      id={props.id}
+      checked={props.checked}
+      disabled={props.disabled}
+      disableRipple={props.disableRipple}
+      onChange={props.onChange}
+      value={props.value}
+      color={props.color}
+      inputProps={props.inputProps}
+    />
+  )
 }
 
 interface IBpCheckboxProps {
