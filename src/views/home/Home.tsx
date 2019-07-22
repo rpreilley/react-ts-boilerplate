@@ -1,8 +1,5 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
-import BpSwitch from '../../components/formFields/BpSwitch/BpSwitch';
-import BpFormControlLabel from '../../components/formFields/BpFormControlLabel/BpFormControlLabel';
-import { colorEnum, labelPlacementEnum } from '../../lib/enums/appEnum';
 
 interface IHome {
   
@@ -20,15 +17,6 @@ class Home extends React.Component<IHome> {
     return(
       <div className="">
         <p>Home Component</p>
-        <BpFormControlLabel 
-          control={
-            <BpSwitch 
-              color={colorEnum.PRIMARY}
-            />
-          }
-          label='My New Switch'
-          labelPlacement={labelPlacementEnum.START}
-        />
       </div>
     )
   }
