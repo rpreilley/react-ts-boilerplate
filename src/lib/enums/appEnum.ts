@@ -20,6 +20,19 @@ export enum colorEnum {
   DEFAULT = 'default'
 }
 
+export enum labelPlacementEnum {
+  START = 'start',
+  END = 'end',
+  TOP = 'top',
+  BOTTOM = 'bottom'
+}
+
+export enum marginEnum {
+  NONE = 'none',
+  DENSE = 'dense',
+  NORMAL = 'normal'
+}
+
 export enum orientationEnum {
   HORIZONTAL = 'horizontal',
   VERTICAL = 'vertical',
@@ -31,18 +44,17 @@ export enum valueLabelDisplayEnum {
   OFF = 'off'
 }
 
+export enum variantEnum {
+  STANDARD = 'standard',
+  OUTLINED = 'outlined',
+  FILLED = 'filled'
+}
+
 // Size ENUM for switch currently.
 // Note: Switch can't use LARGE, so create new enum if more properties are needed, else typescript will error
 export enum sizeEnum {
   SMALL = 'small',
   MEDIUM = 'medium'
-}
-
-export enum labelPlacementEnum {
-  START = 'start',
-  END = 'end',
-  TOP = 'top',
-  BOTTOM = 'bottom'
 }
 
 export const variantIcon = {
