@@ -1,6 +1,6 @@
 import React from 'react';
 import Switch from '@material-ui/core/Switch';
-import { colorEnum, sizeEnum } from '../../../lib/enums/appEnum';
+import { colorEnum, sizeEnum } from '../../../lib/enums/generalEnums';
 
 const BpSwitch: React.FC<IBpSwitchProps> = props => {
   return (

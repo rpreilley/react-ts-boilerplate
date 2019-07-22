@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { labelPlacementEnum } from '../../../lib/enums/appEnum';
+import { labelPlacementEnum } from '../../../lib/enums/generalEnums';
 
 const BpFormControlLabel: React.FC<IBpFormControlLabelProps> = props => {
   return (

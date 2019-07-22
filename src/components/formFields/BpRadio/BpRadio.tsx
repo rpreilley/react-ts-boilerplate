@@ -1,6 +1,6 @@
 import React from 'react';
 import Radio from '@material-ui/core/Radio';
-import { colorEnum } from '../../../lib/enums/appEnum';
+import { colorEnum } from '../../../lib/enums/generalEnums';
 
 const BpRadio: React.FC<IBpRadioProps> = props => {
   return (

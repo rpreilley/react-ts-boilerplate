@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx';
-import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum, variantIcon } from '../lib/enums/appEnum';
+import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum, variantIcon } from '../lib/enums/generalEnums';
 
 // Snackbar interface
 interface ISnackbar {
