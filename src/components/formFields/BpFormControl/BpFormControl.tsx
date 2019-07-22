@@ -1,6 +1,6 @@
 import React from 'react'
 import FormControl from '@material-ui/core/FormControl'
-
+import { marginEnum, variantEnum } from '../../../lib/enums/appEnum'
 
 const BpFormControl: React.FC<IBpFormControlProps> = props => {
   return (
@@ -15,18 +15,6 @@ const BpFormControl: React.FC<IBpFormControlProps> = props => {
       { props.children }
     </FormControl>
   )
-}
-
-export enum marginEnum {
-  NONE = 'none',
-  DENSE = 'dense',
-  NORMAL = 'normal'
-}
-
-export enum variantEnum {
-  STANDARD = 'standard',
-  OUTLINED = 'outlined',
-  FILLED = 'filled'
 }
 
 export interface IBpFormControlProps {

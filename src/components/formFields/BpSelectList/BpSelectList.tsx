@@ -3,6 +3,7 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import BpFormControl from '../BpFormControl/BpFormControl'
 import InputLabel from '@material-ui/core/InputLabel'
+import { variantEnum } from '../../../lib/enums/appEnum'
 
 const BpSelectList: React.FC<IBpSelectListProps> = props => {
   return (
@@ -27,12 +28,6 @@ const BpSelectList: React.FC<IBpSelectListProps> = props => {
       </Select>
     </BpFormControl>
   )
-}
-
-export enum variantEnum {
-  STANDARD = 'standard',
-  OUTLINED = 'outlined',
-  FILLED = 'filled'
 }
 
 export interface IMenuItems {
