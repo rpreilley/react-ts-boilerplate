@@ -14,6 +14,12 @@ export enum anchorOriginVerticalEnum {
   BOTTOM = 'bottom'
 }
 
+export enum colorEnum {
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+  DEFAULT = 'default'
+}
+
 export const variantIcon = {
   success: CheckCircleIcon,
   warning: WarningIcon,

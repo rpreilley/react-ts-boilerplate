@@ -1,5 +1,6 @@
-import React from 'react'
-import Checkbox from '@material-ui/core/Checkbox'
+import React from 'react';
+import Checkbox from '@material-ui/core/Checkbox';
+import { colorEnum } from '../../../lib/enums/appEnum';
 
 const BpCheckbox: React.FC<IBpCheckboxProps> = props => {
     return (
@@ -14,12 +15,6 @@ const BpCheckbox: React.FC<IBpCheckboxProps> = props => {
           inputProps={props.inputProps}
       />
     )
-}
-
-export enum colorEnum {
-  PRIMARY = 'primary',
-  SECONDARY = 'secondary',
-  DEFAULT = 'default'
 }
 
 interface IBpCheckboxProps {

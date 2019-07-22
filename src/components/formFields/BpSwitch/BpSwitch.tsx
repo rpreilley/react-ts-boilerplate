@@ -1,10 +1,10 @@
-import React from 'react';
-import Radio from '@material-ui/core/Radio';
+import React from 'react'
+import Switch from '@material-ui/core/Switch'
 import { colorEnum } from '../../../lib/enums/appEnum';
 
-const BpRadio: React.FC<IBpRadioProps> = props => {
+const BpSwitch: React.FC<IBpSwitchProps> = props => {
   return (
-    <Radio
+    <Switch
       id={props.id}
       checked={props.checked}
       color={props.color}
@@ -17,7 +17,7 @@ const BpRadio: React.FC<IBpRadioProps> = props => {
   )
 }
 
-export interface IBpRadioProps {
+export interface IBpSwitchProps {
   id?: string
   color?: colorEnum
   disabled?: boolean
@@ -25,8 +25,7 @@ export interface IBpRadioProps {
   inputProps?: Object
   checked?: boolean
   value?: any
-  label?: string
   onChange?(): any
 }
 
-export default BpRadio
+export default BpSwitch
