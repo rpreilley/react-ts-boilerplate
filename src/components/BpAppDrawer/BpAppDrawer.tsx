@@ -10,9 +10,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import { useTheme } from '@material-ui/core/styles';
 import { routes } from "../../router/Routes";
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
@@ -32,7 +29,6 @@ interface BpAppDrawerProps {
 
 const BpAppDrawer: React.FC<BpAppDrawerProps> = inject('generalStore')(observer((props) => {
   const classes = bpAppDrawerStyles();
-  const theme = useTheme();
   
   function handleDrawerMiniVariant(event: React.SyntheticEvent | React.MouseEvent, reason?: string) {
     props.generalStore!._toggleAppDrawerMiniVariantOption();
