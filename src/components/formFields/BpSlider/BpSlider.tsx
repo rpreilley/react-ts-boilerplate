@@ -1,5 +1,6 @@
 import React, { ElementType } from 'react'
 import Slider from '@material-ui/core/Slider'
+import { orientationEnum, valueLabelDisplayEnum} from '../../../lib/enums/appEnum'
 
 const BpSlider: React.FC<IBpSliderProps> = props => {
   return (
@@ -18,17 +19,6 @@ const BpSlider: React.FC<IBpSliderProps> = props => {
         valueLabelDisplay={props.valueLabelDisplay}
     />
   )
-}
-
-export enum orientationEnum {
-  HORIZONTAL = 'horizontal',
-  VERTICAL = 'vertical',
-}
-
-export enum valueLabelDisplayEnum {
-    ON = 'on',
-    AUTO = 'auto',
-    OFF = 'off'
 }
 
 export interface IBpSliderProps {
