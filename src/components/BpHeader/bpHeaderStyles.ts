@@ -1,6 +1,7 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
+const drawerWidthWithMiniVariantOption = 58;
 
 const headerStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,10 +25,19 @@ const headerStyles = makeStyles((theme: Theme) =>
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
+      boxShadow: 'none'
     },
     appBarShift: {
       marginLeft: drawerWidth,
       width: `calc(100% - ${drawerWidth}px)`,
+      transition: theme.transitions.create(['width', 'margin'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      })
+    },
+    appBarShiftWithMiniVariantOption: {
+      marginLeft: drawerWidthWithMiniVariantOption,
+      width: `calc(100% - ${drawerWidthWithMiniVariantOption}px)`,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
