@@ -10,9 +10,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import { useTheme } from '@material-ui/core/styles';
 import { routes } from "../../router/Routes";
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
@@ -20,7 +17,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 interface IGeneralStore {
   appDrawerStatus: boolean
+  appDrawerMiniVariantOption: boolean
   _closeAppDrawer(): void
+  _toggleAppDrawerMiniVariantOption(): void
 }
 
 interface BpAppDrawerProps {
@@ -30,10 +29,9 @@ interface BpAppDrawerProps {
 
 const BpAppDrawer: React.FC<BpAppDrawerProps> = inject('generalStore')(observer((props) => {
   const classes = bpAppDrawerStyles();
-  const theme = useTheme();
-
-  function handleDrawerClose(event: React.SyntheticEvent | React.MouseEvent, reason?: string) {
-    props.generalStore!._closeAppDrawer();
+  
+  function handleDrawerMiniVariant(event: React.SyntheticEvent | React.MouseEvent, reason?: string) {
+    props.generalStore!._toggleAppDrawerMiniVariantOption();
   }
 
   return (
@@ -49,12 +47,13 @@ const BpAppDrawer: React.FC<BpAppDrawerProps> = inject('generalStore')(observer(
           paper: clsx({
             [classes.drawerOpen]: props.generalStore!.appDrawerStatus,
             [classes.drawerClose]: !props.generalStore!.appDrawerStatus,
+            [classes.drawerMiniVariant]: props.generalStore!.appDrawerMiniVariantOption
           }),
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          <IconButton onClick={handleDrawerMiniVariant}>
+            {props.generalStore!.appDrawerMiniVariantOption ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
         <Divider />
@@ -73,17 +72,6 @@ const BpAppDrawer: React.FC<BpAppDrawerProps> = inject('generalStore')(observer(
                 </ListItem>  
               </Tooltip>            
             </Link>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <Tooltip title={text} key={index} placement='right'>
-              <ListItem button>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            </Tooltip>
           ))}
         </List>
       </Drawer>

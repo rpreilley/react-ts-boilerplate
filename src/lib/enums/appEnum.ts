@@ -14,6 +14,26 @@ export enum anchorOriginVerticalEnum {
   BOTTOM = 'bottom'
 }
 
+export enum colorEnum {
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+  DEFAULT = 'default'
+}
+
+// Size ENUM for switch currently.
+// Note: Switch can't use LARGE, so create new enum if more properties are needed, else typescript will error
+export enum sizeEnum {
+  SMALL = 'small',
+  MEDIUM = 'medium'
+}
+
+export enum labelPlacementEnum {
+  START = 'start',
+  END = 'end',
+  TOP = 'top',
+  BOTTOM = 'bottom'
+}
+
 export const variantIcon = {
   success: CheckCircleIcon,
   warning: WarningIcon,

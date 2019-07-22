@@ -8,7 +8,7 @@ import theme from './styles/theme/theme-default';
 import Header from './components/BpHeader/BpHeader';
 import { observer, inject } from 'mobx-react';
 import BpSnackbar from './components/BpSnackbar/BpSnackbar';
-import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum } from './lib/enums/snackbarEnum';
+import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum } from './lib/enums/appEnum';
 import BpDialog from './components/BpDialog/BpDialog';
 import BpAppDrawer from './components/BpAppDrawer/BpAppDrawer';
 

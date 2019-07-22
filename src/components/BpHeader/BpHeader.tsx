@@ -13,6 +13,7 @@ interface IGeneralStore {
   _openDialog(): void
   _toggleAppDrawer(): void
   appDrawerStatus: boolean
+  appDrawerMiniVariantOption: boolean
 }
 
 // Define interface for component props
@@ -31,7 +32,7 @@ const BpHeader: React.FC<HeaderProps> = inject('generalStore')(observer((props) 
     props.generalStore!._openDialog()
   }
 
-  function handleDrawerOpen(event: React.SyntheticEvent | React.MouseEvent, reason?: string) {
+  function toggleAppDrawer(event: React.SyntheticEvent | React.MouseEvent, reason?: string) {
     props.generalStore!._toggleAppDrawer();
   }
 
@@ -40,12 +41,12 @@ const BpHeader: React.FC<HeaderProps> = inject('generalStore')(observer((props) 
       <AppBar
         position="relative"
         className={clsx(classes.appBar, {
-          [classes.appBarShift]: props.generalStore!.appDrawerStatus,
+          [classes.appBarShift]: props.generalStore!.appDrawerStatus && !props.generalStore!.appDrawerMiniVariantOption,
+          [classes.appBarShiftWithMiniVariantOption]: props.generalStore!.appDrawerStatus && props.generalStore!.appDrawerMiniVariantOption
         })}
-        style={{ boxShadow: 'none' }}
       >
         <Toolbar variant='dense'>
-          <IconButton edge="start" color="inherit" aria-label="Menu" className={classes.menuButton} onClick={handleDrawerOpen}>
+          <IconButton edge="start" color="inherit" aria-label="Menu" className={classes.menuButton} onClick={toggleAppDrawer}>
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>

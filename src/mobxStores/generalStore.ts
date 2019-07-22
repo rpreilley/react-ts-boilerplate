@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx';
-import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum, variantIcon } from '../lib/enums/snackbarEnum';
+import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum, variantIcon } from '../lib/enums/appEnum';
 
 // Snackbar interface
 interface ISnackbar {
@@ -27,6 +27,7 @@ export default class GeneralStore {
 
   // AppDrawer Observables
   @observable appDrawerStatus?: boolean;
+  @observable appDrawerMiniVariantOption?: boolean;
 
   constructor() {
     // Snackbar defaults
@@ -44,6 +45,7 @@ export default class GeneralStore {
 
     // AppDrawer defaults
     this.appDrawerStatus = false;
+    this.appDrawerMiniVariantOption = false;
   }
 
   // Snackbar actions
@@ -90,6 +92,15 @@ export default class GeneralStore {
   @action
   _toggleAppDrawer() {
     this.appDrawerStatus = !this.appDrawerStatus
+
+    if (this.appDrawerMiniVariantOption) {
+      this.appDrawerMiniVariantOption = false;
+    }
+  }
+
+  @action
+  _toggleAppDrawerMiniVariantOption() {
+    this.appDrawerMiniVariantOption = !this.appDrawerMiniVariantOption;
   }
 
 }
