@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import bpTextFieldStyles from './bpTextFieldStyles';
-import { marginEnum, variantEnum } from '../../../lib/enums/appEnum'
+import { marginEnum, variantEnum } from '../../../lib/enums/generalEnums';
 
 // React functional component
 const BpTextField: React.FC<BpTextFieldProps> = props => {

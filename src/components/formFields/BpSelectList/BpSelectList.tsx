@@ -1,9 +1,9 @@
-import React from 'react'
-import Select from '@material-ui/core/Select'
-import MenuItem from '@material-ui/core/MenuItem'
-import BpFormControl from '../BpFormControl/BpFormControl'
-import InputLabel from '@material-ui/core/InputLabel'
-import { variantEnum } from '../../../lib/enums/appEnum'
+import React from 'react';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import BpFormControl from '../BpFormControl/BpFormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import { variantEnum } from '../../../lib/enums/generalEnums';
 
 const BpSelectList: React.FC<IBpSelectListProps> = props => {
   return (
