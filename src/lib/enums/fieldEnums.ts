@@ -3,7 +3,7 @@ export enum fieldsEnum {
   PASSWORD = 'password',
   TEXTAREA = 'textarea',
   SELECTLIST = 'selectlist',
-  TOGGLE = 'toggle',
+  SWITCH = 'switch',
   DATE = 'date',
   TIME = 'time',
   RADIO = 'radio'

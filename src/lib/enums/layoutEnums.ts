@@ -11,5 +11,6 @@ export enum layoutsEnum {
   L9 = 'xs12 sm12 md9 lg9 xl9',
   L10 = 'xs12 sm12 md10 lg10 xl10',
   L11 = 'xs12 sm12 md11 lg11 xl11',
-  L12 = 'xs12 sm12 md12 lg12 xl12'
+  L12 = 'xs12 sm12 md12 lg12 xl12',
+  T12 = '12'
 }

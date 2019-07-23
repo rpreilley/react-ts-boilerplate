@@ -2,7 +2,6 @@ import React from 'react'
 import { observer, inject } from 'mobx-react';
 import Grid from '@material-ui/core/Grid';
 import { fieldsEnum } from '../../lib/enums/fieldEnums';
-import { marginEnum, variantEnum } from '../../lib/enums/generalEnums';
 // import BpCheckbox from '../formFields/BpCheckbox/BpCheckbox';
 // import BpDatePicker from '../formFields/BpDatePicker/bpDatePickerStyles';
 // import BpFormControl from '../formFields/BpFormControl/BpFormControl';
@@ -10,8 +9,9 @@ import { marginEnum, variantEnum } from '../../lib/enums/generalEnums';
 // import BpRadio from '../formFields/BpRadio/BpRadio';
 // import BpSelectList from '../formFields/BpSelectList/BpSelectList';
 // import BpSlider from '../formFields/BpSlider/BpSlider';
-// import BpSwitch from '../formFields/BpSwitch/BpSwitch';
+import BpSwitch from '../formFields/BpSwitch/BpSwitch';
 import BpTextField from '../formFields/BpTextField/BpTextField';
+import { BpTextFieldProps } from '../../lib/interfaces/formFieldInterfaces';
 
 interface IGeneralStore {
   // Use if needed
@@ -23,28 +23,12 @@ interface IForm {
   fields: Array<BpTextFieldProps>
 }
 
-interface BpTextFieldProps {
-  autoFocus?: boolean
-  disabled?: boolean
-  error?: boolean
-  fullWidth?: boolean
-  id?: (string | undefined)
-  label?: string
-  margin?: marginEnum
-  multiline?: boolean
-  name?: string
-  placeholder?: string
-  required?: boolean
-  rows?: (string | number)
-  type?: fieldsEnum
-  variant?: (variantEnum | undefined)
-};
-
 @inject('userStore', 'generalStore')
 @observer
 class BpForm extends React.Component<IForm> {
 
   renderBpTextFields = () => {
+    let formFields = [];
 
     const bpTextFieldTypes = [
       fieldsEnum.TEXT,
@@ -52,15 +36,16 @@ class BpForm extends React.Component<IForm> {
       fieldsEnum.PASSWORD
     ]
 
-    //Loop through fields array passed in via props
-    for (let i = 0; i < this.props.fields.length; i++) {
-      let field = this.props.fields[i];
-      console.log(field);
+    let formFieldProps = this.props.fields;
 
-      if (bpTextFieldTypes.includes(field.type!)) {
-        return (
-          <Grid item xs={12}>
-            <BpTextField 
+    //Loop through fields array passed in via props
+    for (let i = 0; i < formFieldProps.length; i++) {
+      let field = this.props.fields[i];
+
+      if (bpTextFieldTypes.includes(field.fieldType!)) {
+        formFields.push(
+          <Grid item xs={12} key={field.key}>
+            <BpTextField
               autoFocus={field.autoFocus}
               disabled={field.disabled}
               error={field.error}
@@ -73,12 +58,23 @@ class BpForm extends React.Component<IForm> {
               placeholder={field.placeholder}
               required={field.required}
               rows={field.rows}
-              type={field.type}
+              fieldType={field.fieldType}
             />
           </Grid>
         )
-      }   
+      }
+      
     }
+    
+    return formFields;
+  }
+
+  renderBpSwitch = () => {
+    let formFields = [];
+
+    const bpSwitchTypes = [
+      fieldsEnum.SWITCH
+    ]
   }
 
   render() {
@@ -90,10 +86,7 @@ class BpForm extends React.Component<IForm> {
     // const bpSelectListTypes = [
     //   fieldsEnum.SELECTLIST
     // ]
-  
-    // const bpToggleTypes = [
-    //   fieldsEnum.TOGGLE
-    // ]
+
   
     // const bpDatePickerTypes = [
     //   fieldsEnum.DATE

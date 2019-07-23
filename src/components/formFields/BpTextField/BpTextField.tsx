@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import bpTextFieldStyles from './bpTextFieldStyles';
 import { marginEnum, variantEnum } from '../../../lib/enums/generalEnums';
 import { fieldsEnum } from '../../../lib/enums/fieldEnums';
+import { BpTextFieldProps } from '../../../lib/interfaces/formFieldInterfaces';
 
 // React functional component
 const BpTextField: React.FC<BpTextFieldProps> = props => {
@@ -12,7 +13,7 @@ const BpTextField: React.FC<BpTextFieldProps> = props => {
 
   return (
     <div className={classes.root}>
-      <TextField 
+      <TextField
         autoFocus={props.autoFocus}
         disabled={props.disabled}
         error={props.error}
@@ -33,24 +34,6 @@ const BpTextField: React.FC<BpTextFieldProps> = props => {
   );
 }
 
-// Define interface for component props
-interface BpTextFieldProps {
-  autoFocus?: boolean
-  disabled?: boolean
-  error?: boolean
-  fullWidth?: boolean
-  id?: (string | undefined)
-  label?: string
-  margin?: marginEnum
-  multiline?: boolean
-  name?: string
-  placeholder?: string
-  required?: boolean
-  rows?: (string | number)
-  type?: fieldsEnum
-  variant?: (variantEnum | undefined)
-};
-
 // Set default props
 BpTextField.defaultProps = {
   autoFocus: false,
@@ -63,7 +46,7 @@ BpTextField.defaultProps = {
   name: 'name',
   placeholder: 'placeholder',
   required: false,
-  type: fieldsEnum.TEXT,
+  fieldType: fieldsEnum.TEXT,
   variant: variantEnum.FILLED
 }
 

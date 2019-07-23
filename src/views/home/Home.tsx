@@ -20,21 +20,19 @@ class Home extends React.Component<IHome> {
 
     const testFormFields = [
       {
-        autofocus: true,
         key: 'email',
         label: 'Email',
         placeholder: 'Enter email',
-        type: fieldsEnum.TEXT,
-        layout: layoutsEnum.L12,
-        prependIcon: 'email'
+        fieldType: fieldsEnum.TEXT,
+        layout: layoutsEnum.T12,
       },
       {
         key: 'password',
         label: 'Password',
         placeholder: 'Enter password',
-        type: fieldsEnum.PASSWORD,
-        layout: layoutsEnum.L12,
-        prependIcon: 'lock'
+        fieldType: fieldsEnum.PASSWORD,
+        layout: layoutsEnum.T12,
+        type: 'password'
       }
     ]
 
