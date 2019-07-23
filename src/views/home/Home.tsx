@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
-import { colorEnum, labelPlacementEnum } from '../../lib/enums/appEnum';
+import { colorEnum, labelPlacementEnum } from '../../lib/enums/generalEnums';
 import { generalStore } from '../../mobxStores/generalStore';
 import { IDialog } from '../../mobxStores/generalStore';
 import BpSwitch from '../../components/formFields/BpSwitch/BpSwitch';

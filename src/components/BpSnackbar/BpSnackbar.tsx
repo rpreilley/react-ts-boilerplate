@@ -6,7 +6,7 @@ import bpSnackbarStyles from './bpSnackbarStyles';
 import CloseIcon from '@material-ui/icons/Close';
 import clsx from 'clsx';
 import { observer, inject } from 'mobx-react';
-import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum, variantIcon } from '../../lib/enums/appEnum';
+import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum, variantIcon } from '../../lib/enums/generalEnums';
 
 interface IGeneralStore {
   snackbarStatus: boolean

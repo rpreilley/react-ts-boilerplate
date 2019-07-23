@@ -1,6 +1,6 @@
 import React, { ElementType } from 'react'
 import Slider from '@material-ui/core/Slider'
-import { orientationEnum, valueLabelDisplayEnum} from '../../../lib/enums/appEnum'
+import { orientationEnum, valueLabelDisplayEnum} from '../../../lib/enums/generalEnums'
 
 const BpSlider: React.FC<IBpSliderProps> = props => {
   return (

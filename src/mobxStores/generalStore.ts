@@ -3,7 +3,7 @@ import {
   anchorOriginHorizontalEnum,
   anchorOriginVerticalEnum,
   variantIcon
-} from '../lib/enums/appEnum';
+} from '../lib/enums/generalEnums';
 
 // Snackbar interface
 export interface ISnackbar {

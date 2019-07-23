@@ -14,7 +14,7 @@ import { ISnackbar } from './mobxStores/generalStore';
 import {
   anchorOriginHorizontalEnum,
   anchorOriginVerticalEnum
-} from './lib/enums/appEnum';
+} from './lib/enums/generalEnums';
 
 interface IApp {
   userStore: {
