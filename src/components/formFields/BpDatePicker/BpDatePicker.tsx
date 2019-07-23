@@ -35,7 +35,7 @@ const BpDatePicker: React.FC<BpDatePickerProps> = props => {
 }
 
 // Define interface for component props
-interface BpDatePickerProps {
+export interface BpDatePickerProps {
   autoOk?: boolean
   label?: string
   format?: string

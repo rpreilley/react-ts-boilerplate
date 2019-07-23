@@ -4,7 +4,9 @@ export enum fieldsEnum {
   TEXTAREA = 'textarea',
   SELECTLIST = 'selectlist',
   SWITCH = 'switch',
+  SLIDER = 'slider',
   DATE = 'date',
   TIME = 'time',
-  RADIO = 'radio'
+  RADIO = 'radio',
+  CHECKBOX = 'checkbox'
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
-import BpForm from '../../components/BpForm/BpForm1'
+import BpForm, { IFormProps } from '../../components/BpForm/BpForm'
 import { fieldsEnum } from '../../lib/enums/fieldEnums';
 
 interface IAbout {
@@ -31,22 +31,38 @@ class About extends React.Component<IAbout, IState> {
     return(
       <div className="">
         <p>About Component</p>
-        <BpForm fields={
-          [
+        <BpForm fields={[
+        {
+          label: 'test1',
+          fieldType: fieldsEnum.TEXT
+        },
+        {
+          label: 'test2',
+          fieldType: fieldsEnum.TEXT
+        },
+        {
+          label: 'radio test',
+          fieldType: fieldsEnum.RADIO
+        },
+        {
+          label: 'check test',
+          fieldType: fieldsEnum.CHECKBOX
+        },
+        {
+          label: 'check test',
+          fieldType: fieldsEnum.DATE
+        },
+        {
+          name: 'select list test',
+          menuItems: [
             {
-              label: 'test1',
-              fieldType: fieldsEnum.TEXT
-            },
-            {
-              label: 'test2',
-              fieldType: fieldsEnum.TEXT
-            },
-            {
-              label: 'radio test',
-              fieldType: fieldsEnum.RADIO
+              name: 'test1',
+              value: 'test1'
             }
-          ]
-        }/>
+          ],
+          fieldType: fieldsEnum.SELECTLIST
+        }
+      ]}/>
       </div>
     )
   }
