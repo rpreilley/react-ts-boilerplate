@@ -25,6 +25,7 @@ export interface IBpCheckboxProps {
   inputProps?: Object
   checked?: boolean
   value?: any
+  layout?: any
   onChange?(): any
 }
 

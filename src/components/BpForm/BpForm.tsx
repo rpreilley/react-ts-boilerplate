@@ -1,71 +1,95 @@
-import React from 'react'
+import React from 'react';
 import { observer, inject } from 'mobx-react';
 import Grid from '@material-ui/core/Grid';
 import { fieldsEnum } from '../../lib/enums/fieldEnums';
-import BpTextField from '../formFields/BpTextField/BpTextField';
-import { BpTextFieldProps } from '../../lib/interfaces/formFieldInterfaces';
+import BpTextField, { IBpTextFieldProps } from '../formFields/BpTextField/BpTextField';
 import BpRadio, { IBpRadioProps } from '../formFields/BpRadio/BpRadio';
 import BpCheckbox, { IBpCheckboxProps } from '../formFields/BpCheckbox/BpCheckbox'
-import BpDatePicker, { BpDatePickerProps } from '../formFields/BpDatePicker/BpDatePicker'
+import BpDatePicker, { IBpDatePickerProps } from '../formFields/BpDatePicker/BpDatePicker'
 import BpSelectList, { IBpSelectListProps } from '../formFields/BpSelectList/BpSelectList'
 import BpSlider, { IBpSliderProps } from '../formFields/BpSlider/BpSlider'
 import BpSwitch, { IBpSwitchProps } from '../formFields/BpSwitch/BpSwitch'
 
 export interface IFormProps {
   fields: Array<
-          BpTextFieldProps &
-          IBpRadioProps &
-          IBpCheckboxProps &
-          BpDatePickerProps & 
-          IBpSelectListProps>
+            IBpTextFieldProps &
+            IBpRadioProps &
+            IBpCheckboxProps &
+            IBpDatePickerProps & 
+            IBpSelectListProps
+          >
 }
 
 @inject('userStore', 'generalStore')
 @observer
 class BpForm extends React.Component<IFormProps> {
 
-  renderBpTextFields = (field: BpTextFieldProps, index: number) => {
+  renderBpTextFields = (field: IBpTextFieldProps, index: number) => {
     return (
-        <Grid item xs={12} key={index}>
-            <BpTextField
-              autoFocus={field.autoFocus}
-              disabled={field.disabled}
-              error={field.error}
-              fullWidth={field.fullWidth}
-              id={field.id}
-              label={field.label}
-              margin={field.margin}
-              multiline={field.multiline}
-              name={field.name}
-              placeholder={field.placeholder}
-              required={field.required}
-              rows={field.rows}
-              fieldType={field.fieldType}
-            />
+        <Grid 
+          item 
+          xs={field.layout && field.layout.xs}
+          sm={field.layout && field.layout.sm}
+          md={field.layout && field.layout.md}
+          lg={field.layout && field.layout.lg}
+          xl={field.layout && field.layout.xl}
+          key={index}
+        >
+          <BpTextField
+            autoFocus={field.autoFocus}
+            disabled={field.disabled}
+            error={field.error}
+            fullWidth={field.fullWidth}
+            id={field.id}
+            label={field.label}
+            margin={field.margin}
+            multiline={field.multiline}
+            name={field.name}
+            placeholder={field.placeholder}
+            required={field.required}
+            rows={field.rows}
+            fieldType={field.fieldType}
+          />
         </Grid>
     )
   }
 
   renderBpRadio = (field: IBpRadioProps, index: number) => {
       return (
-        <Grid item xs={12} key={index}>
-            <BpRadio 
-                id={field.id}
-                checked={field.checked}
-                color={field.color}
-                disabled={field.disabled}
-                disableRipple={field.disableRipple}
-                onChange={field.onChange}
-                value={field.value}
-                inputProps={field.inputProps}
-            />
+        <Grid
+          item 
+          xs={field.layout && field.layout.xs}
+          sm={field.layout && field.layout.sm}
+          md={field.layout && field.layout.md}
+          lg={field.layout && field.layout.lg}
+          xl={field.layout && field.layout.xl} 
+          key={index}
+        >
+          <BpRadio 
+              id={field.id}
+              checked={field.checked}
+              color={field.color}
+              disabled={field.disabled}
+              disableRipple={field.disableRipple}
+              onChange={field.onChange}
+              value={field.value}
+              inputProps={field.inputProps}
+          />
         </Grid>
       )
   }
 
   renderBpCheckbox = (field: IBpCheckboxProps, index: number) => {
     return (
-      <Grid item xs={12} key={index}>
+      <Grid
+        item 
+        xs={field.layout && field.layout.xs}
+        sm={field.layout && field.layout.sm}
+        md={field.layout && field.layout.md}
+        lg={field.layout && field.layout.lg}
+        xl={field.layout && field.layout.xl}
+        key={index}
+      >
         <BpCheckbox
           id={field.id}
           checked={field.checked}
@@ -80,9 +104,17 @@ class BpForm extends React.Component<IFormProps> {
     )
   }
 
-    renderBpDatePicker = (field: BpDatePickerProps, index: number) => {
+    renderBpDatePicker = (field: IBpDatePickerProps, index: number) => {
       return (
-        <Grid item xs={12} key={index}>
+        <Grid
+          item 
+          xs={field.layout && field.layout.xs}
+          sm={field.layout && field.layout.sm}
+          md={field.layout && field.layout.md}
+          lg={field.layout && field.layout.lg}
+          xl={field.layout && field.layout.xl} 
+          key={index}
+        >
           <BpDatePicker
             autoOk={field.autoOk}
             label={field.label}
@@ -94,7 +126,15 @@ class BpForm extends React.Component<IFormProps> {
 
   renderBpSelectList = (field: IBpSelectListProps, index: number) => {
     return (
-      <Grid item xs={12} key={index}>
+      <Grid
+        item 
+        xs={field.layout && field.layout.xs}
+        sm={field.layout && field.layout.sm}
+        md={field.layout && field.layout.md}
+        lg={field.layout && field.layout.lg}
+        xl={field.layout && field.layout.xl}
+        key={index}
+      >
         <BpSelectList
           autoWidth= {field.autoWidth}
           open={field.open}

@@ -1,13 +1,13 @@
 // import 'date-fns';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
   DatePicker,
 } from '@material-ui/pickers';
-import bpDatePickerStyles from './bpDatePickerStyles'
+import bpDatePickerStyles from './bpDatePickerStyles';
 
-const BpDatePicker: React.FC<BpDatePickerProps> = props => {
+const BpDatePicker: React.FC<IBpDatePickerProps> = props => {
 
   // Initialize datepicker with current date
   const [selectedDate, setSelectedDate] = React.useState<Date | null>(
@@ -35,10 +35,11 @@ const BpDatePicker: React.FC<BpDatePickerProps> = props => {
 }
 
 // Define interface for component props
-export interface BpDatePickerProps {
+export interface IBpDatePickerProps {
   autoOk?: boolean
   label?: string
   format?: string
+  layout?: any
 }
 
 // Set default props

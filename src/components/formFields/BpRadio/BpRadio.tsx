@@ -26,6 +26,8 @@ export interface IBpRadioProps {
   checked?: boolean
   value?: any
   label?: string
+  // Revisit layout type with enum/interface to specify object with specific types for Materail grid
+  layout?: any
   onChange?(): any
 }
 

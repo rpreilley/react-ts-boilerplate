@@ -79,7 +79,7 @@ class App extends React.Component<IApp, IAppState> {
           <BpAppDrawer />
           <BpSnackbar open={this.props.generalStore.snackbarStatus} />
           <BpDialog />
-          <Container maxWidth="lg" className="app-container">
+          <Container maxWidth="md" className="app-container">
             <Routes />
           </Container>
         </ThemeProvider>

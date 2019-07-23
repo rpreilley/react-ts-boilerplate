@@ -43,6 +43,7 @@ export interface IBpSelectListProps {
   name?: string
   menuItems?: Array<IMenuItems>
   multiple?: boolean
+  layout?: any
   onClose?(): void
   onOpen?(): void
   onChange?(event: React.ChangeEvent<{ value: unknown }>): void
