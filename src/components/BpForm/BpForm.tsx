@@ -27,6 +27,12 @@ interface IForm {
 @observer
 class BpForm extends React.Component<IForm> {
 
+  componentWillMount() {
+    if (this.props.fields && this.props.fields.length > 0) {
+      this.setState({ fields: this.props.fields })
+    }
+  }
+
   renderBpTextFields = () => {
     let formFields = [];
 
@@ -40,7 +46,7 @@ class BpForm extends React.Component<IForm> {
 
     //Loop through fields array passed in via props
     for (let i = 0; i < formFieldProps.length; i++) {
-      let field = this.props.fields[i];
+      let field = formFieldProps[i];
 
       if (bpTextFieldTypes.includes(field.fieldType!)) {
         formFields.push(
@@ -65,7 +71,7 @@ class BpForm extends React.Component<IForm> {
       }
       
     }
-    
+
     return formFields;
   }
 
