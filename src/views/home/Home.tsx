@@ -1,11 +1,18 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
-import { fieldsEnum } from '../../lib/enums/fieldEnums';
-import { layoutsEnum } from '../../lib/enums/layoutEnums';
-import BpForm from '../../components/BpForm/BpForm';
+import { colorEnum, labelPlacementEnum } from '../../lib/enums/generalEnums';
+import { generalStore } from '../../mobxStores/generalStore';
+import { IDialog } from '../../mobxStores/generalStore';
+import BpSwitch from '../../components/formFields/BpSwitch/BpSwitch';
+import BpFormControlLabel from '../../components/formFields/BpFormControlLabel/BpFormControlLabel';
+import Button from '@material-ui/core/Button'
+
+interface IGeneralStore {
+  _updateDialogStatus(data: IDialog): void
+}
 
 interface IHome {
-  
+  generalStore?: IGeneralStore
 }
 
 @inject('userStore', 'generalStore')
@@ -16,32 +23,44 @@ class Home extends React.Component<IHome> {
     
   }
 
+  getSwitch = () => {
+    return (
+      <BpFormControlLabel 
+          control={
+            <BpSwitch 
+              color={colorEnum.PRIMARY}
+            />
+          }
+          label='My New Switch'
+          labelPlacement={labelPlacementEnum.START}
+        />
+    )
+  }
+
+  openDialog = () => {
+    generalStore._updateDialogStatus({
+      dialogStatus: true,
+      dialogTitle: 'Some Title',
+      dialogChildren: this.getSwitch(),
+      dialogButtons: [
+        {
+          label: 'test button',
+          callback: () => console.log('test button 1')
+        },
+        {
+          label: 'test button 2',
+          callback: () => console.log('test button 2')
+        }
+      ]
+    })
+  }
+
   render() {
-
-    const testFormFields = [
-      {
-        key: 'email',
-        label: 'Email',
-        placeholder: 'Enter email',
-        fieldType: fieldsEnum.TEXT,
-        layout: layoutsEnum.T12,
-      },
-      {
-        key: 'password',
-        label: 'Password',
-        placeholder: 'Enter password',
-        fieldType: fieldsEnum.PASSWORD,
-        layout: layoutsEnum.T12,
-        type: 'password'
-      }
-    ]
-
     return(
       <div className="">
         <p>Home Component</p>
-        <BpForm 
-          fields={testFormFields}
-        />
+        <br />
+        <Button onClick={this.openDialog}>Open Dialog</Button>
       </div>
     )
   }

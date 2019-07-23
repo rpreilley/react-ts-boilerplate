@@ -1,8 +1,12 @@
 import { observable, action } from 'mobx';
-import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum, variantIcon } from '../lib/enums/generalEnums';
+import {
+  anchorOriginHorizontalEnum,
+  anchorOriginVerticalEnum,
+  variantIcon
+} from '../lib/enums/generalEnums';
 
 // Snackbar interface
-interface ISnackbar {
+export interface ISnackbar {
   snackbarMessage?: string
   snackbarTimeout?: number
   snackbarVariant?: keyof typeof variantIcon;
@@ -10,6 +14,20 @@ interface ISnackbar {
     horizontal?: anchorOriginHorizontalEnum,
     vertical?: anchorOriginVerticalEnum
   }
+}
+
+interface IDialogButton {
+  label: string,
+  callback?(): void
+}
+
+export interface IDialog {
+  dialogStatus?: boolean;
+  dialogTitle?: string;
+  dialogShowCloseButton?: boolean;
+  dialogCloseButtonLabel?: string;
+  dialogChildren?: any
+  dialogButtons?: IDialogButton[]
 }
 
 export default class GeneralStore {
@@ -24,6 +42,11 @@ export default class GeneralStore {
   }
   // Dialog Observables
   @observable dialogStatus?: boolean;
+  @observable dialogTitle: string;
+  @observable dialogShowCloseButton: boolean;
+  @observable dialogCloseButtonLabel: string;
+  @observable dialogChildren: any;
+  @observable dialogButtons: IDialogButton[];
 
   // AppDrawer Observables
   @observable appDrawerStatus?: boolean;
@@ -42,6 +65,11 @@ export default class GeneralStore {
 
     // Dialog defaults
     this.dialogStatus = false;
+    this.dialogTitle = 'Dialog Title';
+    this.dialogShowCloseButton = true;
+    this.dialogCloseButtonLabel = '';
+    this.dialogChildren = '';
+    this.dialogButtons = []
 
     // AppDrawer defaults
     this.appDrawerStatus = false;
@@ -68,6 +96,16 @@ export default class GeneralStore {
   }
 
   //Dialog actions
+  @action
+  _updateDialogStatus(data: IDialog) {
+    this.dialogStatus = !this.dialogStatus;
+    this.dialogTitle = data.dialogTitle ? data.dialogTitle : 'Default Title';
+    this.dialogShowCloseButton = data.dialogShowCloseButton ? data.dialogShowCloseButton : true;
+    this.dialogCloseButtonLabel = data.dialogCloseButtonLabel ? data.dialogCloseButtonLabel : '';
+    this.dialogChildren = data.dialogChildren ? data.dialogChildren : '';
+    this.dialogButtons = data.dialogButtons ? data.dialogButtons : []
+  }
+
   @action
   _openDialog() {
     this.dialogStatus = true;

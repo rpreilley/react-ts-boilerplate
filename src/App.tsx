@@ -8,9 +8,13 @@ import theme from './styles/theme/theme-default';
 import Header from './components/BpHeader/BpHeader';
 import { observer, inject } from 'mobx-react';
 import BpSnackbar from './components/BpSnackbar/BpSnackbar';
-import {anchorOriginHorizontalEnum, anchorOriginVerticalEnum } from './lib/enums/generalEnums';
 import BpDialog from './components/BpDialog/BpDialog';
 import BpAppDrawer from './components/BpAppDrawer/BpAppDrawer';
+import { ISnackbar } from './mobxStores/generalStore';
+import {
+  anchorOriginHorizontalEnum,
+  anchorOriginVerticalEnum
+} from './lib/enums/generalEnums';
 
 interface IApp {
   userStore: {
@@ -18,30 +22,19 @@ interface IApp {
     users: any
   },
   generalStore: {
-    _updateSnackbarStatus(data: {
-      snackbarTimeout?: number,
-      snackbarMessage?: string,
-      snackbarAnchorOrigin?: {
-        horizontal?: anchorOriginHorizontalEnum,
-        vertical?: anchorOriginVerticalEnum
-      } 
-    }): void
+    _updateSnackbarStatus(data: ISnackbar): void
     snackbarStatus: boolean
+    dialogStatus?: boolean;
+    dialogTitle: string;
+    dialogShowCloseButton: boolean;
+    dialogCloseButtonLabel: string;
+    dialogChildren: any
   }
 }
 
 interface IAppState {
   snackbarOpen: boolean
 }
-
-let buttons = [
-  {
-    label: "Submit",
-    callback: () => {
-      console.log("Hitting the submit button callback function");
-    }
-  }
-]
 
 @inject('userStore', 'generalStore')
 @observer
@@ -85,16 +78,7 @@ class App extends React.Component<IApp, IAppState> {
           <Header />
           <BpAppDrawer />
           <BpSnackbar open={this.props.generalStore.snackbarStatus} />
-          <BpDialog
-            title="Dialog title"
-            showCloseButton={true}
-            closeButtonLabel="close"
-            buttons={buttons}
-          >
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed dolor ac felis mattis ornare non id elit. Aenean mattis lorem elit, eget consectetur mi gravida non. Nulla gravida est neque, ac tempus ipsum tempus quis. Pellentesque at mauris imperdiet, cursus dolor ut, laoreet lacus.
-            </div>
-          </BpDialog>
+          <BpDialog />
           <Container maxWidth="lg" className="app-container">
             <Routes />
           </Container>
