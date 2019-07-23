@@ -2,7 +2,6 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import bpTextFieldStyles from './bpTextFieldStyles';
 import { marginEnum, variantEnum } from '../../../lib/enums/generalEnums';
-import { fieldsEnum } from '../../../lib/enums/fieldEnums';
 import { BpTextFieldProps } from '../../../lib/interfaces/formFieldInterfaces';
 
 // React functional component
@@ -46,7 +45,6 @@ BpTextField.defaultProps = {
   name: 'name',
   placeholder: 'placeholder',
   required: false,
-  fieldType: fieldsEnum.TEXT,
   variant: variantEnum.FILLED
 }
 

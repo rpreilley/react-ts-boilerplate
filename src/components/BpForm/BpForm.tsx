@@ -2,55 +2,29 @@ import React from 'react'
 import { observer, inject } from 'mobx-react';
 import Grid from '@material-ui/core/Grid';
 import { fieldsEnum } from '../../lib/enums/fieldEnums';
-// import BpCheckbox from '../formFields/BpCheckbox/BpCheckbox';
-// import BpDatePicker from '../formFields/BpDatePicker/bpDatePickerStyles';
-// import BpFormControl from '../formFields/BpFormControl/BpFormControl';
-// import BpFormControlLabel from '../formFields/BpFormControlLabel/BpFormControlLabel';
-// import BpRadio from '../formFields/BpRadio/BpRadio';
-// import BpSelectList from '../formFields/BpSelectList/BpSelectList';
-// import BpSlider from '../formFields/BpSlider/BpSlider';
-import BpSwitch from '../formFields/BpSwitch/BpSwitch';
 import BpTextField from '../formFields/BpTextField/BpTextField';
 import { BpTextFieldProps } from '../../lib/interfaces/formFieldInterfaces';
+import BpRadio, { IBpRadioProps } from '../formFields/BpRadio/BpRadio';
+import BpCheckbox, { IBpCheckboxProps } from '../formFields/BpCheckbox/BpCheckbox'
+import BpDatePicker, { BpDatePickerProps } from '../formFields/BpDatePicker/BpDatePicker'
+import BpSelectList, { IBpSelectListProps } from '../formFields/BpSelectList/BpSelectList'
 
-interface IGeneralStore {
-  // Use if needed
-}
-
-interface IForm {
-  generalStore?: IGeneralStore
-  renderAllFormFields?(): void
-  fields: Array<BpTextFieldProps>
+export interface IFormProps {
+  fields: Array<
+          BpTextFieldProps &
+          IBpRadioProps &
+          IBpCheckboxProps &
+          BpDatePickerProps & 
+          IBpSelectListProps>
 }
 
 @inject('userStore', 'generalStore')
 @observer
-class BpForm extends React.Component<IForm> {
+class BpForm extends React.Component<IFormProps> {
 
-  componentWillMount() {
-    if (this.props.fields && this.props.fields.length > 0) {
-      this.setState({ fields: this.props.fields })
-    }
-  }
-
-  renderBpTextFields = () => {
-    let formFields = [];
-
-    const bpTextFieldTypes = [
-      fieldsEnum.TEXT,
-      fieldsEnum.TEXTAREA,
-      fieldsEnum.PASSWORD
-    ]
-
-    let formFieldProps = this.props.fields;
-
-    //Loop through fields array passed in via props
-    for (let i = 0; i < formFieldProps.length; i++) {
-      let field = formFieldProps[i];
-
-      if (bpTextFieldTypes.includes(field.fieldType!)) {
-        formFields.push(
-          <Grid item xs={12} key={field.key}>
+  renderBpTextFields = (field: BpTextFieldProps, index: number) => {
+    return (
+        <Grid item xs={12} key={index}>
             <BpTextField
               autoFocus={field.autoFocus}
               disabled={field.disabled}
@@ -66,73 +40,128 @@ class BpForm extends React.Component<IForm> {
               rows={field.rows}
               fieldType={field.fieldType}
             />
-          </Grid>
-        )
-      }
-      
-    }
-
-    return formFields;
+        </Grid>
+    )
   }
 
-  renderBpSwitch = () => {
-    let formFields = [];
+  renderBpRadio = (field: IBpRadioProps, index: number) => {
+      return (
+        <Grid item xs={12} key={index}>
+            <BpRadio 
+                id={field.id}
+                checked={field.checked}
+                color={field.color}
+                disabled={field.disabled}
+                disableRipple={field.disableRipple}
+                onChange={field.onChange}
+                value={field.value}
+                inputProps={field.inputProps}
+            />
+        </Grid>
+      )
+  }
 
-    const bpSwitchTypes = [
-      fieldsEnum.SWITCH
-    ]
+  renderBpCheckbox = (field: IBpCheckboxProps, index: number) => {
+    return (
+      <Grid item xs={12} key={index}>
+        <BpCheckbox
+          id={field.id}
+          checked={field.checked}
+          disabled={field.disabled}
+          disableRipple={field.disableRipple}
+          onChange={field.onChange}
+          value={field.value}
+          color={field.color}
+          inputProps={field.inputProps}
+        />
+      </Grid>
+    )
+  }
+
+    renderBpDatePicker = (field: BpDatePickerProps, index: number) => {
+      return (
+        <Grid item xs={12} key={index}>
+          <BpDatePicker
+            autoOk={field.autoOk}
+            label={field.label}
+            format={field.format}
+          />
+        </Grid>
+      )
+  }
+
+  renderBpSelectList = (field: IBpSelectListProps, index: number) => {
+    return (
+      <Grid item xs={12} key={index}>
+        <BpSelectList
+          autoWidth= {field.autoWidth}
+          open={field.open}
+          value={field.value}
+          variant={field.variant}
+          name={field.name}
+          menuItems={field.menuItems}
+          multiple={field.multiple}
+          onClose={field.onClose}
+          onOpen={field.onOpen}
+          onChange={field.onChange}
+        />
+      </Grid>
+    )
   }
 
   render() {
+    const bpTextFieldTypes = [
+      fieldsEnum.TEXT,
+      fieldsEnum.TEXTAREA,
+      fieldsEnum.PASSWORD
+    ]
 
-    // Set variable to return of each field type function created
-    // JSX will not allow to execute functions as children
-    const textFields = this.renderBpTextFields();
-  
-    // const bpSelectListTypes = [
-    //   fieldsEnum.SELECTLIST
-    // ]
+    const bpRadioTypes = [
+      fieldsEnum.RADIO
+    ]
 
-  
-    // const bpDatePickerTypes = [
-    //   fieldsEnum.DATE
-    // ]
-  
-    // const bpTimePickerTypes = [
-    //   fieldsEnum.TIME
-    // ]
-  
-    // const bpRadioTypes = [
-    //   fieldsEnum.RADIO
-    // ]
+    const bpCheckboxTypes = [
+      fieldsEnum.CHECKBOX
+    ]
+
+    const bpDatePickerTypes = [
+      fieldsEnum.DATE
+    ]
+
+    const bpSelectListTypes = [
+      fieldsEnum.SELECTLIST
+    ]
+
+    const bpSlider = [
+      fieldsEnum.SLIDER
+    ]
+
+    const bpSwitch = [
+      fieldsEnum.SWITCH
+    ]
 
     return (
       <form id='appForm'>
         <Grid container spacing={3}>
-          {textFields}
+          {this.props.fields.map((field, index) => {
+              if (bpTextFieldTypes.includes(field.fieldType)) {
+                return this.renderBpTextFields(field, index)
+              } else if (bpRadioTypes.includes(field.fieldType)) {
+                return this.renderBpRadio(field, index)
+              } else if (bpCheckboxTypes.includes(field.fieldType)) {
+                return this.renderBpCheckbox(field, index)
+              } else if (bpDatePickerTypes.includes(field.fieldType)) {
+                return this.renderBpDatePicker(field, index)
+              } else if (bpSelectListTypes.includes(field.fieldType)) {
+                return this.renderBpSelectList(field, index)
+              } else {
+                  return <div>Field Type Not Supported</div>
+              }
+          })}
         </Grid>
       </form>
     )
   }
-
-  // function getFieldLayout(field: Object) {
-  //   return field.layout
-  // }
-
-  // function clearFormFields() {
-  //   // Logic to clear form fields
-  // }
-
-  // function updateValue(key, value) {
-  //   // let updatedKey = key
-  //   // let updatedValue = value
-  //   // for (let i=0; i < this.fields.length; i++) {
-  //   //   let fieldData = this.fields[i]
-  //   //   if (fieldData.key === updatedKey) {
-  //   //     fieldData.value = updatedValue
-  //   //   }
-  //   // }
-  // }
 }
 
 export default BpForm;
