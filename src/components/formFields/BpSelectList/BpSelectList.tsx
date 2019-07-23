@@ -20,7 +20,7 @@ const BpSelectList: React.FC<IBpSelectListProps> = props => {
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        {props.menuItems.map((item, index) => (
+        {props.menuItems!.map((item, index) => (
           <MenuItem value={item.value} key={index}>
             { item.name }
           </MenuItem>
@@ -38,14 +38,24 @@ export interface IMenuItems {
 export interface IBpSelectListProps {
   autoWidth?: boolean
   open?: boolean
-  value: any
+  value?: any
   variant?: variantEnum
-  name: string
-  menuItems: Array<IMenuItems>
+  name?: string
+  menuItems?: Array<IMenuItems>
   multiple?: boolean
+  layout?: any
   onClose?(): void
   onOpen?(): void
-  onChange(event: React.ChangeEvent<{ value: unknown }>): void
+  onChange?(event: React.ChangeEvent<{ value: unknown }>): void
+}
+
+BpSelectList.defaultProps = {
+  menuItems: [
+    {
+      name: 'no menuItems added',
+      value: 'no menuItems added'
+    }
+  ]
 }
 
 export default BpSelectList

@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
-import BpForm from '../../components/BpForm/BpForm'
+import BpForm from '../../components/BpForm/BpForm';
 import { fieldsEnum } from '../../lib/enums/fieldEnums';
 import { layoutConfig } from '../../lib/constants/layout';
 
@@ -32,26 +32,53 @@ class About extends React.Component<IAbout, IState> {
     return(
       <div className="">
         <p>About Component</p>
-        <BpForm fields={
-          [
+        <BpForm fields={[
+        {
+          label: 'test1',
+          fieldType: fieldsEnum.TEXT,
+          layout: layoutConfig.L6
+        },
+        {
+          label: 'test2',
+          fieldType: fieldsEnum.TEXT,
+          layout: layoutConfig.L6
+        },
+        {
+          label: 'radio test',
+          fieldType: fieldsEnum.RADIO,
+          layout: layoutConfig.L6
+        },
+        {
+          label: 'check test',
+          fieldType: fieldsEnum.CHECKBOX,
+          layout: layoutConfig.L6
+        },
+        {
+          label: 'check test',
+          fieldType: fieldsEnum.DATE,
+          layout: layoutConfig.L6
+        },
+        {
+          name: 'select list test',
+          menuItems: [
             {
-              label: 'firstName',
-              fieldType: fieldsEnum.TEXT,
-              layout: layoutConfig.L6
+              name: 'Option 1',
+              value: 1
             },
             {
-              label: 'lastName',
-              fieldType: fieldsEnum.TEXT,
-              layout: layoutConfig.L6
+              name: 'Option 2',
+              value: 2
             },
             {
-              label: 'Password',
-              fieldType: fieldsEnum.PASSWORD,
-              layout: layoutConfig.L6,
-              type: 'password'
+              name: 'Option 3',
+              value: 3
+
             }
-          ]
-        }/>
+          ],
+          fieldType: fieldsEnum.SELECTLIST,
+          layout: layoutConfig.L6
+        }
+      ]}/>
       </div>
     )
   }

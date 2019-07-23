@@ -17,15 +17,16 @@ const BpCheckbox: React.FC<IBpCheckboxProps> = props => {
   )
 }
 
-interface IBpCheckboxProps {
+export interface IBpCheckboxProps {
   id?: string
   color?: colorEnum
   disabled?: boolean
   disableRipple?: boolean
   inputProps?: Object
-  checked: boolean
-  value: any
-  onChange(): any
+  checked?: boolean
+  value?: any
+  layout?: any
+  onChange?(): any
 }
 
 BpCheckbox.defaultProps = {

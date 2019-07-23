@@ -3,10 +3,9 @@ import TextField from '@material-ui/core/TextField';
 import bpTextFieldStyles from './bpTextFieldStyles';
 import { marginEnum, variantEnum } from '../../../lib/enums/generalEnums';
 import { fieldsEnum } from '../../../lib/enums/fieldEnums';
-import { BpTextFieldProps } from '../../../lib/interfaces/formFieldInterfaces';
 
 // React functional component
-const BpTextField: React.FC<BpTextFieldProps> = props => {
+const BpTextField: React.FC<IBpTextFieldProps> = props => {
 
   // Hook into bpTextFieldStyles defined for component and set to a variable
   const classes = bpTextFieldStyles();
@@ -34,6 +33,28 @@ const BpTextField: React.FC<BpTextFieldProps> = props => {
   );
 }
 
+// Define interface for component props
+export interface IBpTextFieldProps {
+  key?: (string | number)
+  autoFocus?: boolean
+  disabled?: boolean
+  error?: boolean
+  fullWidth?: boolean
+  id?: (string | undefined)
+  label?: string
+  margin?: marginEnum
+  multiline?: boolean
+  name?: string
+  placeholder?: string
+  required?: boolean
+  rows?: (string | number)
+  fieldType: fieldsEnum
+  type?: string
+  // Revisit layout type with enum/interface to specify object with specific types for Materail grid
+  layout?: any
+  variant?: (variantEnum | undefined)
+};
+
 // Set default props
 BpTextField.defaultProps = {
   autoFocus: false,
@@ -46,7 +67,6 @@ BpTextField.defaultProps = {
   name: 'name',
   placeholder: 'placeholder',
   required: false,
-  fieldType: fieldsEnum.TEXT,
   variant: variantEnum.FILLED
 }
 
