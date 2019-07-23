@@ -60,7 +60,14 @@ class About extends React.Component<IAbout, IState> {
               value: 'test1'
             }
           ],
+          value: 'test',
           fieldType: fieldsEnum.SELECTLIST
+        },
+        {
+          fieldType: fieldsEnum.SLIDER
+        },
+        {
+          fieldType: fieldsEnum.SWITCH
         }
       ]}/>
       </div>

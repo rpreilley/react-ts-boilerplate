@@ -8,6 +8,8 @@ import BpRadio, { IBpRadioProps } from '../formFields/BpRadio/BpRadio';
 import BpCheckbox, { IBpCheckboxProps } from '../formFields/BpCheckbox/BpCheckbox'
 import BpDatePicker, { BpDatePickerProps } from '../formFields/BpDatePicker/BpDatePicker'
 import BpSelectList, { IBpSelectListProps } from '../formFields/BpSelectList/BpSelectList'
+import BpSlider, { IBpSliderProps } from '../formFields/BpSlider/BpSlider'
+import BpSwitch, { IBpSwitchProps } from '../formFields/BpSwitch/BpSwitch'
 
 export interface IFormProps {
   fields: Array<
@@ -109,6 +111,45 @@ class BpForm extends React.Component<IFormProps> {
     )
   }
 
+  renderBpSlider = (field: IBpSliderProps, index: number) => {
+    return (
+      <Grid item xs={12} key={index}>
+        <BpSlider
+          aria-label={field.ariaLabel}
+          defaultValue={field.defaultValue}
+          disabled={field.disabled}
+          marks={field.marks}
+          max={field.max}
+          min={field.min}
+          name={field.name}
+          onChange={field.onChange}
+          orientation={field.orientation}
+          step={field.step}
+          value={field.value}
+          valueLabelDisplay={field.valueLabelDisplay}
+      />
+      </Grid>
+    )
+  }
+
+  renderBpSwitch = (field: IBpSwitchProps, index: number) => {
+    return (
+      <Grid item xs={12} key={index}>
+        <BpSwitch
+          id={field.id}
+          color={field.color}
+          disabled={field.disabled}
+          disableRipple={field.disableRipple}
+          inputProps={field.inputProps}
+          checked={field.checked}
+          value={field.value}
+          size={field.size}
+          onChange={field.onChange}
+        />
+      </Grid>
+    )
+  }
+
   render() {
     const bpTextFieldTypes = [
       fieldsEnum.TEXT,
@@ -132,11 +173,11 @@ class BpForm extends React.Component<IFormProps> {
       fieldsEnum.SELECTLIST
     ]
 
-    const bpSlider = [
+    const bpSliderTypes = [
       fieldsEnum.SLIDER
     ]
 
-    const bpSwitch = [
+    const bpSwitchTypes = [
       fieldsEnum.SWITCH
     ]
 
@@ -154,6 +195,10 @@ class BpForm extends React.Component<IFormProps> {
                 return this.renderBpDatePicker(field, index)
               } else if (bpSelectListTypes.includes(field.fieldType)) {
                 return this.renderBpSelectList(field, index)
+              } else if (bpSliderTypes.includes(field.fieldType)) {
+                return this.renderBpSlider(field, index)
+              } else if (bpSwitchTypes.includes(field.fieldType)) {
+                return this.renderBpSwitch(field, index)
               } else {
                   return <div>Field Type Not Supported</div>
               }
