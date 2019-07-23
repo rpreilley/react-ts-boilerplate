@@ -7,20 +7,23 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import bpDialogStyles from './bpDialogStyles';
 
-interface IGeneralStore {
-  dialogStatus: boolean
-  _closeDialog(): void
-}
 interface IButton {
   label: string,
   callback?(): void
 }
 
+interface IGeneralStore {
+  dialogStatus: boolean
+  dialogTitle: string
+  dialogShowCloseButton: boolean
+  dialogCloseButtonLabel: string
+  dialogButtons: IButton[]
+  dialogChildren: any
+  _closeDialog(): void
+}
+
 interface BpDialogProps {
   generalStore?: IGeneralStore
-  title: string
-  showCloseButton: boolean
-  closeButtonLabel?: string
   buttons?: IButton[]
   onSubmit?(): void
 }
@@ -36,7 +39,6 @@ const BpDialog: React.FC<BpDialogProps> = inject('generalStore')(observer((props
   }
 
   function renderButtons(buttons: IButton[]) {
-
     return (
       buttons.map((button: IButton, index) => (
       <Button key={index} onClick={button.callback} color="primary">
@@ -54,19 +56,20 @@ const BpDialog: React.FC<BpDialogProps> = inject('generalStore')(observer((props
       className={classes.dialog}
     >
       <DialogTitle>
-        { props.title }
+        { props.generalStore!.dialogTitle }
       </DialogTitle>
       <DialogContent>
-        { props.children }  
+        { props.generalStore!.dialogChildren }  
       </DialogContent>
       <DialogActions>
         { 
-          props.showCloseButton &&
+          props.generalStore!.dialogShowCloseButton &&
           <Button onClick={handleClose} color="primary">
-            { props.closeButtonLabel && "Cancel" }
+            { props.generalStore!.dialogCloseButtonLabel ?
+              props.generalStore!.dialogCloseButtonLabel : "Cancel" }
           </Button>
         }
-        { props.buttons && renderButtons(props.buttons) }
+        { renderButtons(props.generalStore!.dialogButtons) }
       </DialogActions>
     </Dialog>
   );
