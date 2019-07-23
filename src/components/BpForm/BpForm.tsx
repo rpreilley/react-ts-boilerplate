@@ -47,6 +47,7 @@ class BpForm extends React.Component<IFormProps> {
             required={field.required}
             rows={field.rows}
             fieldType={field.fieldType}
+            value={field.value}
           />
         </Grid>
     )
@@ -70,8 +71,8 @@ class BpForm extends React.Component<IFormProps> {
               disabled={field.disabled}
               disableRipple={field.disableRipple}
               onChange={field.onChange}
-              value={field.value}
               inputProps={field.inputProps}
+              value={field.value}
           />
         </Grid>
       )
@@ -94,9 +95,9 @@ class BpForm extends React.Component<IFormProps> {
           disabled={field.disabled}
           disableRipple={field.disableRipple}
           onChange={field.onChange}
-          value={field.value}
           color={field.color}
           inputProps={field.inputProps}
+          value={field.value}
         />
       </Grid>
     )
@@ -117,6 +118,7 @@ class BpForm extends React.Component<IFormProps> {
             autoOk={field.autoOk}
             label={field.label}
             format={field.format}
+            value={field.value}
           />
         </Grid>
       )
@@ -136,7 +138,6 @@ class BpForm extends React.Component<IFormProps> {
         <BpSelectList
           autoWidth= {field.autoWidth}
           open={field.open}
-          value={field.value}
           variant={field.variant}
           name={field.name}
           menuItems={field.menuItems}
@@ -144,6 +145,7 @@ class BpForm extends React.Component<IFormProps> {
           onClose={field.onClose}
           onOpen={field.onOpen}
           onChange={field.onChange}
+          value={field.value}
         />
       </Grid>
     )

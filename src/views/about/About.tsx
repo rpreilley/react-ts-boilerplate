@@ -2,6 +2,7 @@ import React from 'react';
 import { observer, inject } from 'mobx-react';
 import BpForm from '../../components/BpForm/BpForm';
 import { fieldsEnum } from '../../lib/enums/fieldEnums';
+import { colorEnum } from '../../lib/enums/generalEnums';
 import { layoutConfig } from '../../lib/constants/layout';
 
 interface IAbout {
@@ -36,11 +37,13 @@ class About extends React.Component<IAbout, IState> {
         {
           label: 'test1',
           fieldType: fieldsEnum.TEXT,
+          fullWidth: true,
           layout: layoutConfig.L6
         },
         {
           label: 'test2',
           fieldType: fieldsEnum.TEXT,
+          fullWidth: true,
           layout: layoutConfig.L6
         },
         {
@@ -51,7 +54,8 @@ class About extends React.Component<IAbout, IState> {
         {
           label: 'check test',
           fieldType: fieldsEnum.CHECKBOX,
-          layout: layoutConfig.L6
+          layout: layoutConfig.L6,
+          color: colorEnum.DEFAULT
         },
         {
           label: 'check test',
@@ -59,7 +63,10 @@ class About extends React.Component<IAbout, IState> {
           layout: layoutConfig.L6
         },
         {
-          name: 'select list test',
+          fieldType: fieldsEnum.SELECTLIST,
+          name: 'Select an Option',
+          layout: layoutConfig.L6,
+          value: '',
           menuItems: [
             {
               name: 'Option 1',
@@ -72,17 +79,13 @@ class About extends React.Component<IAbout, IState> {
             {
               name: 'Option 3',
               value: 3
-
             }
-          ],
-          fieldType: fieldsEnum.SELECTLIST,
-          layout: layoutConfig.L6
+          ]
         }
       ]}/>
       </div>
     )
   }
-
 }
 
 export default About;

@@ -23,6 +23,7 @@ const BpDatePicker: React.FC<IBpDatePickerProps> = props => {
     <div className={classes.root}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <DatePicker
+            className={classes.datepicker}
             autoOk={props.autoOk}
             label={props.label}
             value={selectedDate}
@@ -40,6 +41,7 @@ export interface IBpDatePickerProps {
   label?: string
   format?: string
   layout?: any
+  value?: any
 }
 
 // Set default props
