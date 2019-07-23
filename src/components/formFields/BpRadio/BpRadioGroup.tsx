@@ -31,7 +31,7 @@ const BpRadioGroup: React.FC<IBpRadioGroupProps> = props => {
 
 interface IBpRadioGroupProps {
   name: string
-  value: any
+  value?: any
   defaultValue?: any
   radios: Array<IBpRadioProps>
   onChange(event: React.ChangeEvent<unknown>): void

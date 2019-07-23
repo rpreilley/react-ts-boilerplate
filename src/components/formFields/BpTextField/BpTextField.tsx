@@ -53,6 +53,7 @@ export interface IBpTextFieldProps {
   // Revisit layout type with enum/interface to specify object with specific types for Materail grid
   layout?: any
   variant?: (variantEnum | undefined)
+  value?: string
 };
 
 // Set default props
