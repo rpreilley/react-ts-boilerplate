@@ -18,5 +18,7 @@ export interface BpTextFieldProps {
   rows?: (string | number)
   fieldType: fieldsEnum
   type?: string
+  // Revisit layout type with enum/interface to specify object with specific types for Materail grid
+  layout?: any
   variant?: (variantEnum | undefined)
 };

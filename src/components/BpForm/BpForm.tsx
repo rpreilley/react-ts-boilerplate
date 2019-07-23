@@ -2,137 +2,101 @@ import React from 'react'
 import { observer, inject } from 'mobx-react';
 import Grid from '@material-ui/core/Grid';
 import { fieldsEnum } from '../../lib/enums/fieldEnums';
-// import BpCheckbox from '../formFields/BpCheckbox/BpCheckbox';
-// import BpDatePicker from '../formFields/BpDatePicker/bpDatePickerStyles';
-// import BpFormControl from '../formFields/BpFormControl/BpFormControl';
-// import BpFormControlLabel from '../formFields/BpFormControlLabel/BpFormControlLabel';
-// import BpRadio from '../formFields/BpRadio/BpRadio';
-// import BpSelectList from '../formFields/BpSelectList/BpSelectList';
-// import BpSlider from '../formFields/BpSlider/BpSlider';
-import BpSwitch from '../formFields/BpSwitch/BpSwitch';
 import BpTextField from '../formFields/BpTextField/BpTextField';
+import BpRadio, { IBpRadioProps } from '../formFields/BpRadio/BpRadio';
 import { BpTextFieldProps } from '../../lib/interfaces/formFieldInterfaces';
 
-interface IGeneralStore {
-  // Use if needed
-}
-
-interface IForm {
-  generalStore?: IGeneralStore
-  renderAllFormFields?(): void
+interface IFormProps {
   fields: Array<BpTextFieldProps>
 }
 
 @inject('userStore', 'generalStore')
 @observer
-class BpForm extends React.Component<IForm> {
+class BpForm extends React.Component<IFormProps> {
 
-  componentWillMount() {
-    if (this.props.fields && this.props.fields.length > 0) {
-      this.setState({ fields: this.props.fields })
-    }
+  renderBpTextFields = (field: BpTextFieldProps, index: number) => {
+    return (
+      <Grid 
+        item
+        xs={field.layout.xs}
+        sm={field.layout.sm}
+        md={field.layout.md}
+        lg={field.layout.lg}
+        xl={field.layout.xl}
+        key={index}
+      >
+        <BpTextField
+          autoFocus={field.autoFocus}
+          disabled={field.disabled}
+          error={field.error}
+          fullWidth={field.fullWidth}
+          id={field.id}
+          label={field.label}
+          margin={field.margin}
+          multiline={field.multiline}
+          name={field.name}
+          placeholder={field.placeholder}
+          required={field.required}
+          rows={field.rows}
+          fieldType={field.fieldType}
+          type={field.type}
+        />
+      </Grid>
+    )
   }
 
-  renderBpTextFields = () => {
-    let formFields = [];
+  renderBpRadio = (field: IBpRadioProps, index: number) => {
+    return (
+      <Grid
+        item 
+        xs={field.layout.xs}
+        sm={field.layout.sm}
+        md={field.layout.md}
+        lg={field.layout.lg}
+        xl={field.layout.xl} 
+        key={index}
+      >
+        <BpRadio 
+            id={field.id}
+            checked={field.checked}
+            color={field.color}
+            disabled={field.disabled}
+            disableRipple={field.disableRipple}
+            onChange={field.onChange}
+            value={field.value}
+            inputProps={field.inputProps}
+        />
+      </Grid>
+    )
+  }
 
+  render() {
     const bpTextFieldTypes = [
       fieldsEnum.TEXT,
       fieldsEnum.TEXTAREA,
       fieldsEnum.PASSWORD
     ]
 
-    let formFieldProps = this.props.fields;
-
-    //Loop through fields array passed in via props
-    for (let i = 0; i < formFieldProps.length; i++) {
-      let field = formFieldProps[i];
-
-      if (bpTextFieldTypes.includes(field.fieldType!)) {
-        formFields.push(
-          <Grid item xs={12} key={field.key}>
-            <BpTextField
-              autoFocus={field.autoFocus}
-              disabled={field.disabled}
-              error={field.error}
-              fullWidth={field.fullWidth}
-              id={field.id}
-              label={field.label}
-              margin={field.margin}
-              multiline={field.multiline}
-              name={field.name}
-              placeholder={field.placeholder}
-              required={field.required}
-              rows={field.rows}
-              fieldType={field.fieldType}
-            />
-          </Grid>
-        )
-      }
-      
-    }
-
-    return formFields;
-  }
-
-  renderBpSwitch = () => {
-    let formFields = [];
-
-    const bpSwitchTypes = [
-      fieldsEnum.SWITCH
+    const bpRadioTypes = [
+      fieldsEnum.RADIO
     ]
-  }
-
-  render() {
-
-    // Set variable to return of each field type function created
-    // JSX will not allow to execute functions as children
-    const textFields = this.renderBpTextFields();
-  
-    // const bpSelectListTypes = [
-    //   fieldsEnum.SELECTLIST
-    // ]
-
-  
-    // const bpDatePickerTypes = [
-    //   fieldsEnum.DATE
-    // ]
-  
-    // const bpTimePickerTypes = [
-    //   fieldsEnum.TIME
-    // ]
-  
-    // const bpRadioTypes = [
-    //   fieldsEnum.RADIO
-    // ]
 
     return (
       <form id='appForm'>
         <Grid container spacing={3}>
-          {textFields}
+          {this.props.fields.map((field, index) => {
+            if (bpTextFieldTypes.includes(field.fieldType)) {
+              return this.renderBpTextFields(field, index)
+            } else if (bpRadioTypes.includes(field.fieldType)) {
+              return this.renderBpRadio(field, index)
+            } else {
+                return <div>Field Type Not Supported</div>
+            }
+          })}
         </Grid>
       </form>
     )
   }
-
-  // function getFieldLayout(field: Object) {
-  //   return field.layout
-  // }
-
-  // function clearFormFields() {
-  //   // Logic to clear form fields
-  // }
-
-  // function updateValue(key, value) {
-  //   // let updatedKey = key
-  //   // let updatedValue = value
-  //   // for (let i=0; i < this.fields.length; i++) {
-  //   //   let fieldData = this.fields[i]
-  //   //   if (fieldData.key === updatedKey) {
-  //   //     fieldData.value = updatedValue
-  //   //   }
-  //   // }
-  // }
 }
 
 export default BpForm;

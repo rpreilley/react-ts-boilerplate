@@ -1,7 +1,8 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
-import BpForm from '../../components/BpForm/BpForm1'
+import BpForm from '../../components/BpForm/BpForm'
 import { fieldsEnum } from '../../lib/enums/fieldEnums';
+import { layoutConfig } from '../../lib/constants/layout';
 
 interface IAbout {
   
@@ -34,16 +35,20 @@ class About extends React.Component<IAbout, IState> {
         <BpForm fields={
           [
             {
-              label: 'test1',
-              fieldType: fieldsEnum.TEXT
+              label: 'firstName',
+              fieldType: fieldsEnum.TEXT,
+              layout: layoutConfig.L6
             },
             {
-              label: 'test2',
-              fieldType: fieldsEnum.TEXT
+              label: 'lastName',
+              fieldType: fieldsEnum.TEXT,
+              layout: layoutConfig.L6
             },
             {
-              label: 'radio test',
-              fieldType: fieldsEnum.RADIO
+              label: 'Password',
+              fieldType: fieldsEnum.PASSWORD,
+              layout: layoutConfig.L6,
+              type: 'password'
             }
           ]
         }/>
