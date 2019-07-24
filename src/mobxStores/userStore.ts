@@ -7,7 +7,7 @@ export default class UserStore {
   @observable lastName: string;
   @observable userSession: Object;
   @observable emailAddress: string;
-  @observable formConfig: Object
+  @observable formValues: any
 
   constructor() {
     this.userId = null!;
@@ -15,7 +15,7 @@ export default class UserStore {
     this.lastName = '';
     this.emailAddress = '';
     this.userSession = {};
-    this.formConfig = {};
+    this.formValues = {};
   }
 
   @action
@@ -50,17 +50,17 @@ export default class UserStore {
   }
 
   @action
-  gatherFormConfig(data: Object) {
-    this.formConfig = data;
+  _updateFormValues(data: any) {
+    this.formValues = {...this.formValues, ...data}
   }
 
-  getFormConfig() {
+  getformValues() {
     debugger
-    return this.formConfig
+    return this.formValues
   }
 
-  clearFormConfig() {
-    this.formConfig = {};
+  clearformValues() {
+    this.formValues = [];
   }
 
 }
