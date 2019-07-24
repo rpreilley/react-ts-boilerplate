@@ -5,6 +5,7 @@ import { colorEnum, sizeEnum } from '../../../lib/enums/generalEnums';
 const BpSwitch: React.FC<IBpSwitchProps> = props => {
   return (
     <Switch
+      key={props.inputKey}
       id={props.id}
       color={props.color}
       disabled={props.disabled}
@@ -19,6 +20,7 @@ const BpSwitch: React.FC<IBpSwitchProps> = props => {
 }
 
 export interface IBpSwitchProps {
+  inputKey: string | number
   id?: string
   color?: colorEnum
   disabled?: boolean

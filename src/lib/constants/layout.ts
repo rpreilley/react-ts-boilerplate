@@ -4,7 +4,7 @@ export const layoutConfig = Object.freeze({
     xs: 12,
     sm: 6,
     md: 6,
-    lg: 4,
+    lg: 6,
     xl: 4
   },
   L12: {

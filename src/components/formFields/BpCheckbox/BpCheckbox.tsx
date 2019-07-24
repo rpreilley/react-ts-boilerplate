@@ -5,6 +5,7 @@ import { colorEnum } from '../../../lib/enums/generalEnums';
 const BpCheckbox: React.FC<IBpCheckboxProps> = props => {
   return (
     <Checkbox
+      key={props.inputKey}
       id={props.id}
       checked={props.checked}
       disabled={props.disabled}
@@ -18,6 +19,7 @@ const BpCheckbox: React.FC<IBpCheckboxProps> = props => {
 }
 
 export interface IBpCheckboxProps {
+  inputKey: string | number
   id?: string
   color?: colorEnum
   disabled?: boolean

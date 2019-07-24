@@ -6,7 +6,7 @@ const BpFormControlLabel: React.FC<IBpFormControlLabelProps> = props => {
   return (
     <FormControlLabel
       checked={props.checked}
-      control={props.control}
+      control={props.control!}
       disabled={props.disabled}
       label={props.label}
       labelPlacement={props.labelPlacement}
@@ -21,9 +21,9 @@ const BpFormControlLabel: React.FC<IBpFormControlLabelProps> = props => {
 
 export interface IBpFormControlLabelProps {
   checked?: boolean
-  control: ReactElement
+  control?: ReactElement
   disabled?: boolean
-  label: string
+  label?: string
   labelPlacement?: labelPlacementEnum
   name?: string
   onChange?(): any
