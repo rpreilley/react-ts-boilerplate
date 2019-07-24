@@ -5,6 +5,7 @@ import { orientationEnum, valueLabelDisplayEnum} from '../../../lib/enums/genera
 const BpSlider: React.FC<IBpSliderProps> = props => {
   return (
     <Slider
+      key={props.inputKey}
         aria-label={props.ariaLabel}
         defaultValue={props.defaultValue}
         disabled={props.disabled}
@@ -22,6 +23,7 @@ const BpSlider: React.FC<IBpSliderProps> = props => {
 }
 
 export interface IBpSliderProps {
+    inputKey: string | number
     ariaLabel?: string
     defaultValue?: number | Array<number>
     disabled?: boolean

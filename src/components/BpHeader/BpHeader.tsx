@@ -55,6 +55,7 @@ const BpHeader: React.FC<HeaderProps> = inject('generalStore')(observer((props) 
   }
 
   function _handleLogin() {
+    debugger
     console.log('Login button clicked');
   }
 

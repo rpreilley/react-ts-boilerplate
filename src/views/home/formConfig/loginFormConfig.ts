@@ -5,7 +5,7 @@ import { layoutConfig } from '../../../lib/constants/layout';
 
 const loginFormFields = [
   {
-    key: 'email',
+    inputKey: 'email',
     label: 'Email',
     placeholder: 'Enter email',
     fieldType: fieldsEnum.TEXT,
@@ -13,7 +13,7 @@ const loginFormFields = [
     fullWidth: true
   },
   {
-    key: 'password',
+    inputKey: 'password',
     label: 'Password',
     placeholder: 'Enter password',
     fieldType: fieldsEnum.PASSWORD,

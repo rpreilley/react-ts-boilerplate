@@ -10,6 +10,7 @@ const BpSelectList: React.FC<IBpSelectListProps> = props => {
     <BpFormControl>
       <InputLabel>{props.name}</InputLabel>
       <Select
+        key={props.inputKey}
         open={props.open}
         onClose={props.onClose}
         onOpen={props.onOpen}
@@ -36,6 +37,7 @@ export interface IMenuItems {
 }
 
 export interface IBpSelectListProps {
+  inputKey: string | number
   autoWidth?: boolean
   open?: boolean
   value?: any

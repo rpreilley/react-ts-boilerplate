@@ -28,6 +28,7 @@ class Home extends React.Component<IHome> {
       <BpFormControlLabel 
           control={
             <BpSwitch 
+              inputKey='somekey'
               color={colorEnum.PRIMARY}
             />
           }

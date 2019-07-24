@@ -10,9 +10,14 @@ const BpTextField: React.FC<IBpTextFieldProps> = props => {
   // Hook into bpTextFieldStyles defined for component and set to a variable
   const classes = bpTextFieldStyles();
 
+  function updateValue(event: any) {
+    props.onChange!(props.inputKey, event.target.value)
+  }
+
   return (
     <div className={classes.root}>
       <TextField
+        key={props.inputKey}
         autoFocus={props.autoFocus}
         disabled={props.disabled}
         error={props.error}
@@ -26,8 +31,9 @@ const BpTextField: React.FC<IBpTextFieldProps> = props => {
         required={props.required}
         rows={props.rows}
         type={props.type}
+        onChange={(event) => updateValue(event)}
         // Look into below 
-        // variant={props.variant}
+        //variant={props.variant}
         />
     </div>
   );
@@ -35,7 +41,7 @@ const BpTextField: React.FC<IBpTextFieldProps> = props => {
 
 // Define interface for component props
 export interface IBpTextFieldProps {
-  key?: (string | number)
+  inputKey?: (string | number)
   autoFocus?: boolean
   disabled?: boolean
   error?: boolean
@@ -54,6 +60,7 @@ export interface IBpTextFieldProps {
   layout?: any
   variant?: (variantEnum | undefined)
   value?: string
+  onChange?(key: any, value: any): void
 };
 
 // Set default props
