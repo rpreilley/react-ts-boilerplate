@@ -10,9 +10,9 @@ import { observer, inject } from 'mobx-react';
 import clsx from 'clsx';
 import { IDialog } from '../../mobxStores/generalStore';
 import loginFormConfig from '../../views/home/formConfig/loginFormConfig';
-import BpForm from '../BpForm/BpForm';
+import BpForm, { IUserStore } from '../BpForm/BpForm';
 
-interface IGeneralStore {
+export interface IGeneralStore {
   _openDialog(): void
   _toggleAppDrawer(): void
   _updateDialogStatus(data: IDialog): void
@@ -23,11 +23,12 @@ interface IGeneralStore {
 // Define interface for component props
 interface HeaderProps {
   generalStore?: IGeneralStore
+  userStore?: IUserStore
   title?: string
 };
 
 // React functional component
-const BpHeader: React.FC<HeaderProps> = inject('generalStore')(observer((props) => {
+const BpHeader: React.FC<HeaderProps> = inject('generalStore', 'userStore')(observer((props) => {
 
   // Hook into headerStyles defined for component and set to a variable
   const classes = headerStyles();
@@ -37,7 +38,7 @@ const BpHeader: React.FC<HeaderProps> = inject('generalStore')(observer((props) 
     let data = {
       dialogTitle : 'Login',
       dialogShowCloseButton: true,
-      dialogChildren: <BpForm fields={loginFormConfig} />,
+      dialogChildren: <BpForm fields={loginFormConfig}  />,
       dialogButtons: [
         {
           label: 'Login',
@@ -54,9 +55,27 @@ const BpHeader: React.FC<HeaderProps> = inject('generalStore')(observer((props) 
     props.generalStore!._toggleAppDrawer();
   }
 
-  function _handleLogin() {
+  async function _handleLogin () {
+    let storeFormConfig = props.userStore!.getFormConfig;
+
     debugger
-    console.log('Login button clicked');
+    let success = false;
+    let payload:any = {};
+    // storeFormConfig.forEach((field) => {
+    //   console.log(field)
+    //   payload[field.inputKey] = field.value
+    // })
+    //console.log(payload)
+    try {
+      //const OrganizationService = ServiceFactory.get('organization')
+      //const response = await OrganizationService.get()
+      let response = false
+      if (response) {
+        // success = true
+      }
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   return (

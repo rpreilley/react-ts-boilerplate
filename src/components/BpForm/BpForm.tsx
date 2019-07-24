@@ -10,6 +10,13 @@ import BpSelectList, { IBpSelectListProps } from '../formFields/BpSelectList/BpS
 import BpSlider, { IBpSliderProps } from '../formFields/BpSlider/BpSlider'
 import BpSwitch, { IBpSwitchProps } from '../formFields/BpSwitch/BpSwitch'
 import BpFormControlLabel, { IBpFormControlLabelProps } from '../formFields/BpFormControlLabel/BpFormControlLabel'
+import { any } from 'prop-types';
+
+export interface IUserStore {
+  gatherFormConfig(formConfig: Object): void
+  getFormConfig(): Object
+  formConfig: Object
+}
 
 export interface IFormProps {
   fields: Array<IBpTextFieldProps &
@@ -18,6 +25,7 @@ export interface IFormProps {
                 IBpDatePickerProps & 
                 IBpSelectListProps &
                 IBpFormControlLabelProps>
+  userStore?: IUserStore
 }
 
 @inject('userStore', 'generalStore')
@@ -25,16 +33,21 @@ export interface IFormProps {
 class BpForm extends React.Component<IFormProps> {
 
   updateValue = (key: any, value: any) => {
-    let updatedKey = key
-    let updatedValue = value
-    console.log(updatedKey)
-    console.log(updatedValue)
+    let formConfig = {
+      key: any,
+      value: any
+    };
+    let updatedKey = key;
+    let updatedValue = value;
     for (let i=0; i < this.props.fields.length; i++) {
-      let fieldData = this.props.fields[i]
-      if (fieldData.inputKey === updatedKey) {
-        fieldData.value = updatedValue
+      if (this.props.fields[i].inputKey === updatedKey) {
+        formConfig.key = updatedKey;
+        formConfig.value = updatedValue;
       }
     }
+
+    this.props.userStore!.gatherFormConfig(formConfig)
+
   }
 
   renderBpTextFields = (field: IBpTextFieldProps, index: number) => {
@@ -64,7 +77,8 @@ class BpForm extends React.Component<IFormProps> {
             rows={field.rows}
             fieldType={field.fieldType}
             value={field.value}
-            onChange={this.updateValue}
+            type={field.type}
+            onChange={(inputKey: any, event: any) => this.updateValue(inputKey, event.target.value)}
           />
         </Grid>
     )

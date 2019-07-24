@@ -10,10 +10,6 @@ const BpTextField: React.FC<IBpTextFieldProps> = props => {
   // Hook into bpTextFieldStyles defined for component and set to a variable
   const classes = bpTextFieldStyles();
 
-  function updateValue(event: any) {
-    props.onChange!(props.inputKey, event.target.value)
-  }
-
   return (
     <div className={classes.root}>
       <TextField
@@ -31,7 +27,8 @@ const BpTextField: React.FC<IBpTextFieldProps> = props => {
         required={props.required}
         rows={props.rows}
         type={props.type}
-        onChange={(event) => updateValue(event)}
+        onChange={(event) => props.onChange!(props.inputKey, event)}
+        value={props.value}
         // Look into below 
         //variant={props.variant}
         />
@@ -58,9 +55,9 @@ export interface IBpTextFieldProps {
   type?: string
   // Revisit layout type with enum/interface to specify object with specific types for Materail grid
   layout?: any
-  variant?: (variantEnum | undefined)
+  variant?: variantEnum
   value?: string
-  onChange?(key: any, value: any): void
+  onChange?(inputKey: any, event: any): void
 };
 
 // Set default props
@@ -75,7 +72,7 @@ BpTextField.defaultProps = {
   name: 'name',
   placeholder: 'placeholder',
   required: false,
-  variant: variantEnum.FILLED
+  variant: variantEnum.FILLED,
 }
 
 export default BpTextField;
