@@ -1,4 +1,4 @@
-// import 'date-fns';
+import 'date-fns';
 import React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -22,14 +22,14 @@ const BpDatePicker: React.FC<IBpDatePickerProps> = props => {
   return (
     <div className={classes.root}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <DatePicker
-            className={classes.datepicker}
-            autoOk={props.autoOk}
-            label={props.label}
-            value={selectedDate}
-            onChange={handleDateChange}
-            format={props.format}
-          />
+        <DatePicker
+          className={classes.datepicker}
+          autoOk={props.autoOk}
+          label={props.label}
+          value={selectedDate}
+          onChange={handleDateChange}
+          format={props.format}
+        />
       </MuiPickersUtilsProvider>
     </div>
   );

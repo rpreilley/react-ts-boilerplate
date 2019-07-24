@@ -225,7 +225,7 @@ class BpForm extends React.Component<IFormProps> {
 
     return (
       <form id='appForm'>
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           {this.props.fields.map((field, index) => {
               if (bpTextFieldTypes.includes(field.fieldType)) {
                 return this.renderBpTextFields(field, index)
