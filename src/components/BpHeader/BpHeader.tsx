@@ -8,10 +8,14 @@ import Typography from '@material-ui/core/Typography';
 import headerStyles from './bpHeaderStyles';
 import { observer, inject } from 'mobx-react';
 import clsx from 'clsx';
+import { IDialog } from '../../mobxStores/generalStore';
+import loginFormConfig from '../../views/home/formConfig/loginFormConfig';
+import BpForm from '../BpForm/BpForm';
 
 interface IGeneralStore {
   _openDialog(): void
   _toggleAppDrawer(): void
+  _updateDialogStatus(data: IDialog): void
   appDrawerStatus: boolean
   appDrawerMiniVariantOption: boolean
 }
@@ -29,11 +33,29 @@ const BpHeader: React.FC<HeaderProps> = inject('generalStore')(observer((props) 
   const classes = headerStyles();
 
   function openDialog() {
-    props.generalStore!._openDialog()
+    //props.generalStore!._openDialog()
+    let data = {
+      dialogTitle : 'Login',
+      dialogShowCloseButton: true,
+      dialogChildren: <BpForm fields={loginFormConfig} />,
+      dialogButtons: [
+        {
+          label: 'Login',
+          callback: _handleLogin
+        }
+      ]
+    }
+    
+    
+    props.generalStore!._updateDialogStatus(data);
   }
 
   function toggleAppDrawer(event: React.SyntheticEvent | React.MouseEvent, reason?: string) {
     props.generalStore!._toggleAppDrawer();
+  }
+
+  function _handleLogin() {
+    console.log('Login button clicked');
   }
 
   return (

@@ -68,6 +68,13 @@ const brAppDrawerStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       padding: '0 8px',
       justifyContent: 'flex-end'
+    },
+    drawerHeaderMiniVariant: {
+      display: 'flex',
+      alignItems: 'center',
+      padding: '0 8px',
+      justifyContent: 'flex-end',
+      alignSelf: 'center'
     }
   })
 );
