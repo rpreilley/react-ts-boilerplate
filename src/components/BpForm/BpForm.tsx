@@ -101,7 +101,8 @@ class BpForm extends React.Component<IFormProps> {
             value={field.value}
             defaultValue={field.defaultValue}
             radios={field.radios}
-            onChange={field.onChange}
+            row={field.row}
+            onChange={(inputKey: any, event: any) => this.updateValue(inputKey, event.target.value)}
           />
         </Grid>
       )

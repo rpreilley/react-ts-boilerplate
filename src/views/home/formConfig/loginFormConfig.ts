@@ -20,7 +20,24 @@ const loginFormFields = [
     type: 'password',
     layout: layoutConfig.L12,
     fullWidth: true
-  }
+  },
+  {
+    inputKey: 'test6',
+    name: 'radio test',
+    radios: [
+      {
+        label: 'radio1',
+        value: 'test'
+      },
+      {
+        label: 'radio1',
+        value: 'test2'
+      }
+    ],
+    row: true,
+    fieldType: fieldsEnum.RADIO,
+    layout: layoutConfig.L12
+  },
 ]
 
 export default loginFormFields

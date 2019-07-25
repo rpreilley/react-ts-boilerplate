@@ -13,7 +13,8 @@ export interface IBpRadioGroupProps {
   defaultValue?: any
   radios?: Array<IBpRadioProps>
   layout?: any
-  onChange?(event: React.ChangeEvent<unknown>): void
+  row?: boolean
+  onChange?(inputKey: any, event: any): void
 }
 
 const BpRadioGroup: React.FC<IBpRadioGroupProps> = props => {
@@ -23,7 +24,8 @@ const BpRadioGroup: React.FC<IBpRadioGroupProps> = props => {
         key={props.inputKey}
         name={props.name}
         value={props.value}
-        onChange={props.onChange}
+        row={props.row}
+        onChange={(event) => props.onChange!(props.inputKey, event)}
       >
         {props.radios!.map((radio, index) => (
           <BpFormControlLabel
@@ -34,6 +36,7 @@ const BpRadioGroup: React.FC<IBpRadioGroupProps> = props => {
             }
             label={radio.label}
             labelPlacement={labelPlacementEnum.START}
+            // onChange={(event) => props.onChange!(props.inputKey, event)}
           />
         ))}
       </RadioGroup>      
