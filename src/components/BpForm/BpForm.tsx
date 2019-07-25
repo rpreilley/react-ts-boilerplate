@@ -10,12 +10,11 @@ import BpSelectList, { IBpSelectListProps } from '../formFields/BpSelectList/BpS
 import BpSlider, { IBpSliderProps } from '../formFields/BpSlider/BpSlider'
 import BpSwitch, { IBpSwitchProps } from '../formFields/BpSwitch/BpSwitch'
 import BpFormControlLabel, { IBpFormControlLabelProps } from '../formFields/BpFormControlLabel/BpFormControlLabel'
-import { any } from 'prop-types';
 
 export interface IUserStore {
-  gatherFormConfig(formConfig: Object): void
+  _updateFormValues(formValues: Object): void
   getFormConfig(): Object
-  formConfig: Object
+  formValues: Object
 }
 
 export interface IFormProps {
@@ -33,21 +32,10 @@ export interface IFormProps {
 class BpForm extends React.Component<IFormProps> {
 
   updateValue = (key: any, value: any) => {
-    let formConfig = {
-      key: any,
-      value: any
-    };
-    let updatedKey = key;
-    let updatedValue = value;
-    for (let i=0; i < this.props.fields.length; i++) {
-      if (this.props.fields[i].inputKey === updatedKey) {
-        formConfig.key = updatedKey;
-        formConfig.value = updatedValue;
-      }
+    let obj = {
+      [key]: value
     }
-
-    this.props.userStore!.gatherFormConfig(formConfig)
-
+    this.props.userStore!._updateFormValues(obj)
   }
 
   renderBpTextFields = (field: IBpTextFieldProps, index: number) => {
