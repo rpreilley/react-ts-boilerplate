@@ -56,26 +56,26 @@ const BpHeader: React.FC<HeaderProps> = inject('generalStore', 'userStore')(obse
   }
 
   async function _handleLogin () {
-    let storeFormConfig = props.userStore!.getFormConfig;
-
-    debugger
-    let success = false;
-    let payload:any = {};
-    // storeFormConfig.forEach((field) => {
-    //   console.log(field)
-    //   payload[field.inputKey] = field.value
-    // })
-    //console.log(payload)
-    try {
-      //const OrganizationService = ServiceFactory.get('organization')
-      //const response = await OrganizationService.get()
-      let response = false
-      if (response) {
-        // success = true
-      }
-    } catch (e) {
-      console.log(e)
-    }
+    let storeFormConfig = props.userStore!.formValues;
+    console.log(storeFormConfig)
+    // debugger
+    // let success = false;
+    // let payload:any = {};
+    // // storeFormConfig.forEach((field) => {
+    // //   console.log(field)
+    // //   payload[field.inputKey] = field.value
+    // // })
+    // //console.log(payload)
+    // try {
+    //   //const OrganizationService = ServiceFactory.get('organization')
+    //   //const response = await OrganizationService.get()
+    //   let response = false
+    //   if (response) {
+    //     // success = true
+    //   }
+    // } catch (e) {
+    //   console.log(e)
+    // }
   }
 
   return (
