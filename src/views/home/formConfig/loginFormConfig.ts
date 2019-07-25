@@ -1,7 +1,6 @@
-// import { Fields } from '@/lib/types/field.js'
-// import { Layout } from '@/lib/types/layout.js'
 import { fieldsEnum } from '../../../lib/enums/fieldEnums';
 import { layoutConfig } from '../../../lib/constants/layout';
+import { colorEnum } from '../../../lib/enums/generalEnums';
 
 const loginFormFields = [
   {
@@ -22,22 +21,53 @@ const loginFormFields = [
     fullWidth: true
   },
   {
-    inputKey: 'test6',
+    inputKey: 'login-radio',
     name: 'radio test',
     radios: [
       {
         label: 'radio1',
-        value: 'test'
+        value: 'radio1'
       },
       {
-        label: 'radio1',
-        value: 'test2'
+        label: 'radio2',
+        value: 'radio2'
       }
     ],
     row: true,
+    color: colorEnum.PRIMARY,
     fieldType: fieldsEnum.RADIO,
-    layout: layoutConfig.L12
+    layout: layoutConfig.L6
   },
+  {
+    fieldType: fieldsEnum.CHECKBOX,
+    inputKey: 'login-checkbox',
+    layout: layoutConfig.L6,
+    label: 'Checkbox 1',
+    color: colorEnum.PRIMARY,
+    row: true,
+    checkboxes: [
+      {
+        label: 'test1',
+        value: 'test1'
+      },
+      {
+        label: 'test2',
+        value: 'test2'
+      },
+      {
+        label: 'test3',
+        value: 'test3'
+      },
+      {
+        label: 'test4',
+        value: 'test4'
+      },
+      {
+        label: 'test5',
+        value: 'test5'
+      }
+    ]
+  }
 ]
 
 export default loginFormFields

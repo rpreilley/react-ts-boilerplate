@@ -5,6 +5,7 @@ import BpFormControlLabel from '../BpFormControlLabel/BpFormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
 import { IBpRadioProps } from './BpRadio'
 import { labelPlacementEnum } from '../../../lib/enums/generalEnums';
+import { colorEnum } from '../../../lib/enums/generalEnums';
 
 export interface IBpRadioGroupProps {
   inputKey: string | number
@@ -14,6 +15,7 @@ export interface IBpRadioGroupProps {
   radios?: Array<IBpRadioProps>
   layout?: any
   row?: boolean
+  color?: colorEnum
   onChange?(inputKey: any, event: any): void
 }
 
@@ -32,11 +34,13 @@ const BpRadioGroup: React.FC<IBpRadioGroupProps> = props => {
             key={`radio-${index}`}
             value={radio.value}
             control={
-              <BpRadio {...radio}/>
+              <BpRadio 
+                {...radio}
+                color={props.color}
+              />
             }
             label={radio.label}
             labelPlacement={labelPlacementEnum.START}
-            // onChange={(event) => props.onChange!(props.inputKey, event)}
           />
         ))}
       </RadioGroup>      

@@ -15,6 +15,7 @@ import BpForm, { IUserStore } from '../BpForm/BpForm';
 export interface IGeneralStore {
   _openDialog(): void
   _toggleAppDrawer(): void
+  _getformValues(): Function
   _updateDialogStatus(data: IDialog): void
   appDrawerStatus: boolean
   appDrawerMiniVariantOption: boolean
@@ -56,9 +57,9 @@ const BpHeader: React.FC<HeaderProps> = inject('generalStore', 'userStore')(obse
   }
 
   async function _handleLogin () {
-    let storeFormConfig = props.userStore!.formValues;
+    let storeFormConfig = props.userStore!._getformValues();
     console.log(storeFormConfig)
-    // debugger
+    debugger
     // let success = false;
     // let payload:any = {};
     // // storeFormConfig.forEach((field) => {

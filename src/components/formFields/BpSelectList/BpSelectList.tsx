@@ -6,6 +6,7 @@ import InputLabel from '@material-ui/core/InputLabel'
 import { variantEnum } from '../../../lib/enums/generalEnums'
 
 const BpSelectList: React.FC<IBpSelectListProps> = props => {
+
   return (
     <BpFormControl>
       <InputLabel>{props.name}</InputLabel>

@@ -1,25 +1,41 @@
 import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
+import FormGroup from '@material-ui/core/FormGroup';
 import { colorEnum } from '../../../lib/enums/generalEnums';
+import BpFormControlLabel from '../../formFields/BpFormControlLabel/BpFormControlLabel';
 
 const BpCheckbox: React.FC<IBpCheckboxProps> = props => {
+
+  let checkboxArray:Array<string | number> = [];
+
+  const handleCheck = (event: any) => {
+    checkboxArray.push(event.target.value);
+    props.onChange!(props.inputKey, checkboxArray);
+  };
+  
   return (
-    <Checkbox
-      key={props.inputKey}
-      id={props.id}
-      checked={props.checked}
-      disabled={props.disabled}
-      disableRipple={props.disableRipple}
-      onChange={props.onChange}
-      value={props.value}
-      color={props.color}
-      inputProps={props.inputProps}
-    />
+    <FormGroup row={props.row} >
+      {props.checkboxes!.map((checkbox, index) => {
+        return(
+          <BpFormControlLabel
+            key={index}
+            label={checkbox.label}
+            control={
+              <Checkbox
+                color={props.color} 
+                value={checkbox.value}
+                onChange={(event) => handleCheck(event)}
+              />
+            }
+          />
+        )
+      })}
+    </FormGroup>
   )
 }
 
 export interface IBpCheckboxProps {
-  inputKey: string | number
+  inputKey: string | number 
   id?: string
   color?: colorEnum
   disabled?: boolean
@@ -27,12 +43,14 @@ export interface IBpCheckboxProps {
   inputProps?: Object
   checked?: boolean
   value?: any
+  row?: boolean
   layout?: any
-  onChange?(): any
+  checkboxes?: Array<{label: string, value: any}>
+  onChange?(inputKey: any, event: any): void
 }
 
 BpCheckbox.defaultProps = {
-  color: colorEnum.SECONDARY,
+  color: colorEnum.PRIMARY,
   disabled: false
 }
 

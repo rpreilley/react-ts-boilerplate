@@ -9,11 +9,11 @@ import BpDatePicker, { IBpDatePickerProps } from '../formFields/BpDatePicker/BpD
 import BpSelectList, { IBpSelectListProps } from '../formFields/BpSelectList/BpSelectList'
 import BpSlider, { IBpSliderProps } from '../formFields/BpSlider/BpSlider'
 import BpSwitch, { IBpSwitchProps } from '../formFields/BpSwitch/BpSwitch'
-import BpFormControlLabel, { IBpFormControlLabelProps } from '../formFields/BpFormControlLabel/BpFormControlLabel'
+import { IBpFormControlLabelProps } from '../formFields/BpFormControlLabel/BpFormControlLabel'
 
 export interface IUserStore {
   _updateFormValues(formValues: Object): void
-  getFormConfig(): Object
+  _getformValues(): Function
   formValues: Object
 }
 
@@ -90,6 +90,7 @@ class BpForm extends React.Component<IFormProps> {
             defaultValue={field.defaultValue}
             radios={field.radios}
             row={field.row}
+            color={field.color}
             onChange={(inputKey: any, event: any) => this.updateValue(inputKey, event.target.value)}
           />
         </Grid>
@@ -107,22 +108,17 @@ class BpForm extends React.Component<IFormProps> {
         xl={field.layout && field.layout.xl}
         key={index}
       >
-        <BpFormControlLabel
-          label={field.label}
-          labelPlacement={field.labelPlacement}
-          control={
-            <BpCheckbox
-              inputKey={field.inputKey}
-              id={field.id}
-              checked={field.checked}
-              disabled={field.disabled}
-              disableRipple={field.disableRipple}
-              onChange={field.onChange}
-              color={field.color}
-              inputProps={field.inputProps}
-              value={field.value}
-            />
-          }
+        <BpCheckbox
+          inputKey={field.inputKey}
+          id={field.id}
+          disabled={field.disabled}
+          disableRipple={field.disableRipple}
+          color={field.color}
+          checkboxes={field.checkboxes}
+          inputProps={field.inputProps}
+          value={field.value}
+          row={field.row}
+          onChange={(inputKey: any, checkboxArray: Array<string | number>) => this.updateValue(inputKey, checkboxArray)}
         />
 
       </Grid>

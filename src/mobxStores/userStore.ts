@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, toJS } from 'mobx';
 import ApiService from '../services/ApiService';
 
 export default class UserStore {
@@ -19,7 +19,7 @@ export default class UserStore {
   }
 
   @action
-  authenticateUser(data: Object) {
+  _authenticateUser(data: Object) {
     // Url needed for authentication endpoint
     const url = '';
 
@@ -41,7 +41,7 @@ export default class UserStore {
   }
 
   @action
-  clearUserSession() {
+  _clearUserSession() {
     this.userId = null!;
     this.firstName = '';
     this.lastName = '';
@@ -54,12 +54,14 @@ export default class UserStore {
     this.formValues = {...this.formValues, ...data}
   }
 
-  getformValues() {
+  _getformValues() {
+    let response = toJS(this.formValues);
+    console.log(response);
     debugger
-    return this.formValues
+    return response
   }
 
-  clearformValues() {
+  _clearformValues() {
     this.formValues = [];
   }
 
