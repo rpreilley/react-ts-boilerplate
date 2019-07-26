@@ -21,50 +21,54 @@ const loginFormFields = [
     fullWidth: true
   },
   {
-    inputKey: 'login-radio',
-    name: 'radio test',
-    radios: [
-      {
-        label: 'radio1',
-        value: 'radio1'
-      },
-      {
-        label: 'radio2',
-        value: 'radio2'
-      }
-    ],
-    row: true,
-    fieldType: fieldsEnum.RADIO,
-    layout: layoutConfig.L6
-  },
-  {
-    inputKey: 'login-select',
-    fieldType: fieldsEnum.SELECTLIST,
-    name: 'Select an Option',
-    layout: layoutConfig.L6,
-    multiple: false,
-    value: '',
-    menuItems: [
-      {
-        name: 'Option 1',
-        value: 1
-      },
-      {
-        name: 'Option 2',
-        value: 2
-      },
-      {
-        name: 'Option 3',
-        value: 3
-      }
-    ]
+    inputKey: 'login-datepicker',
+    fieldType: fieldsEnum.DATE,
+    layout: layoutConfig.L12,
+    label: 'Select a date',
   }
+  // {
+  //   inputKey: 'login-radio',
+  //   name: 'radio test',
+  //   radios: [
+  //     {
+  //       label: 'radio1',
+  //       value: 'radio1'
+  //     },
+  //     {
+  //       label: 'radio2',
+  //       value: 'radio2'
+  //     }
+  //   ],
+  //   fieldType: fieldsEnum.RADIO,
+  //   layout: layoutConfig.L6
+  // },
+  // {
+  //   inputKey: 'login-select',
+  //   fieldType: fieldsEnum.SELECTLIST,
+  //   name: 'Select an Option',
+  //   layout: layoutConfig.L6,
+  //   multiple: false,
+  //   value: '',
+  //   menuItems: [
+  //     {
+  //       name: 'Option 1',
+  //       value: 1
+  //     },
+  //     {
+  //       name: 'Option 2',
+  //       value: 2
+  //     },
+  //     {
+  //       name: 'Option 3',
+  //       value: 3
+  //     }
+  //   ]
+  // },
   // {
   //   fieldType: fieldsEnum.CHECKBOX,
   //   inputKey: 'login-checkbox',
   //   layout: layoutConfig.L6,
   //   label: 'Checkbox 1',
-  //   color: colorEnum.PRIMARY,
   //   row: true,
   //   checkboxes: [
   //     {

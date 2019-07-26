@@ -16,7 +16,9 @@ const BpDatePicker: React.FC<IBpDatePickerProps> = props => {
   const classes = bpDatePickerStyles();
 
   function handleDateChange(date: Date | null) {
+    let selected = date;
     setSelectedDate(date);
+    props.onChange!(props.inputKey, selected);
   }
 
   return (
@@ -44,6 +46,7 @@ export interface IBpDatePickerProps {
   format?: string
   layout?: any
   value?: any
+  onChange?(inputKey: any, event: any): void
 }
 
 // Set default props

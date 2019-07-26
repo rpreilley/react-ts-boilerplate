@@ -142,6 +142,7 @@ class BpForm extends React.Component<IFormProps> {
             label={field.label}
             format={field.format}
             value={field.value}
+            onChange={(inputKey: any, date) => this.updateValue(inputKey, date)}
           />
         </Grid>
       )

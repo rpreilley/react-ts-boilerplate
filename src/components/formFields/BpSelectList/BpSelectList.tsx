@@ -31,12 +31,13 @@ const BpSelectList: React.FC<IBpSelectListProps> = props => {
         onOpen={props.onOpen}
         value={selectedValues}
         multiple={props.multiple}
+        displayEmpty
         input={props.multiple ? <Input id="select-multiple" /> : <Input id="select-single" />}
         onChange={props.multiple ? handleChangeMultiple : handleChange}
       >
-        <MenuItem value="">
+        {/* <MenuItem value="">
           <em>None</em>
-        </MenuItem>
+        </MenuItem> */}
         {props.menuItems!.map((item, index) => (
           <MenuItem value={item.value} key={index}>
             { item.name }
