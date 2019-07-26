@@ -168,8 +168,8 @@ class BpForm extends React.Component<IFormProps> {
           multiple={field.multiple}
           onClose={field.onClose}
           onOpen={field.onOpen}
-          onChange={field.onChange}
           value={field.value}
+          onChange={(inputKey: any, selectedValues: Array<string | number> | string) => this.updateValue(inputKey, selectedValues)}
         />
       </Grid>
     )

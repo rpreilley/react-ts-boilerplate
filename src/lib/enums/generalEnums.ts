@@ -50,6 +50,14 @@ export enum variantEnum {
   FILLED = 'filled'
 }
 
+export enum widthEnum {
+  XS = 'xs',
+  SM = 'sm',
+  MD = 'md',
+  LG = 'lg',
+  XL = 'xl'
+}
+
 // Size ENUM for switch currently.
 // Note: Switch can't use LARGE, so create new enum if more properties are needed, else typescript will error
 export enum sizeEnum {

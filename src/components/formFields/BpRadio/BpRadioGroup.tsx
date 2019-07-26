@@ -48,4 +48,8 @@ const BpRadioGroup: React.FC<IBpRadioGroupProps> = props => {
   )
 }
 
+BpRadioGroup.defaultProps = {
+  color: colorEnum.PRIMARY
+}
+
 export default BpRadioGroup

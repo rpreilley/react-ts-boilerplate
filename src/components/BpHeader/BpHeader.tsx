@@ -11,6 +11,7 @@ import clsx from 'clsx';
 import { IDialog } from '../../mobxStores/generalStore';
 import loginFormConfig from '../../views/home/formConfig/loginFormConfig';
 import BpForm, { IUserStore } from '../BpForm/BpForm';
+import { widthEnum } from '../../lib/enums/generalEnums';
 
 export interface IGeneralStore {
   _openDialog(): void
@@ -45,7 +46,8 @@ const BpHeader: React.FC<HeaderProps> = inject('generalStore', 'userStore')(obse
           label: 'Login',
           callback: _handleLogin
         }
-      ]
+      ],
+      dialogMaxWidth: widthEnum.XS
     }
     
     

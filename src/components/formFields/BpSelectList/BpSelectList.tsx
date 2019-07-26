@@ -4,20 +4,35 @@ import MenuItem from '@material-ui/core/MenuItem'
 import BpFormControl from '../BpFormControl/BpFormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import { variantEnum } from '../../../lib/enums/generalEnums'
+import Input from '@material-ui/core/Input';
 
 const BpSelectList: React.FC<IBpSelectListProps> = props => {
+
+  const [selectedValues, setSelectedValues] = React.useState<string[]>([]);
+
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    let selected = event.target.value as string[];
+    setSelectedValues(selected);
+    props.onChange!(props.inputKey, selected);
+  };
+
+  const handleChangeMultiple = (event: any) => {
+    let selected = event.target.value;
+    setSelectedValues(selected);
+    props.onChange!(props.inputKey, selected);
+  }
 
   return (
     <BpFormControl>
       <InputLabel>{props.name}</InputLabel>
       <Select
         key={props.inputKey}
-        open={props.open}
         onClose={props.onClose}
         onOpen={props.onOpen}
-        value={props.value}
+        value={selectedValues}
         multiple={props.multiple}
-        onChange={props.onChange}
+        input={props.multiple ? <Input id="select-multiple" /> : <Input id="select-single" />}
+        onChange={props.multiple ? handleChangeMultiple : handleChange}
       >
         <MenuItem value="">
           <em>None</em>
@@ -49,7 +64,7 @@ export interface IBpSelectListProps {
   layout?: any
   onClose?(): void
   onOpen?(): void
-  onChange?(event: React.ChangeEvent<{ value: unknown }>): void
+  onChange?(inputKey: any, event: any): void
 }
 
 BpSelectList.defaultProps = {

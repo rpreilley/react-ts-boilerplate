@@ -6,6 +6,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import bpDialogStyles from './bpDialogStyles';
+import { widthEnum } from '../../lib/enums/generalEnums';
 
 interface IButton {
   label: string,
@@ -20,12 +21,14 @@ interface IGeneralStore {
   dialogButtons: IButton[]
   dialogChildren: any
   _closeDialog(): void
+  dialogMaxWidth: widthEnum
 }
 
 interface BpDialogProps {
   generalStore?: IGeneralStore
   buttons?: IButton[]
   onSubmit?(): void
+  maxWidth?: widthEnum
 }
 
 const BpDialog: React.FC<BpDialogProps> = inject('generalStore')(observer((props) => {
@@ -51,6 +54,7 @@ const BpDialog: React.FC<BpDialogProps> = inject('generalStore')(observer((props
   return (
     <Dialog
       open={ props.generalStore!.dialogStatus }
+      maxWidth={props.generalStore!.dialogMaxWidth}
       onClose={ handleClose }
       disableBackdropClick={ true }
       className={classes.dialog}

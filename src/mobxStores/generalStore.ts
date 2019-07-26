@@ -2,7 +2,8 @@ import { observable, action } from 'mobx';
 import {
   anchorOriginHorizontalEnum,
   anchorOriginVerticalEnum,
-  variantIcon
+  variantIcon,
+  widthEnum
 } from '../lib/enums/generalEnums';
 
 // Snackbar interface
@@ -26,8 +27,9 @@ export interface IDialog {
   dialogTitle?: string;
   dialogShowCloseButton?: boolean;
   dialogCloseButtonLabel?: string;
-  dialogChildren?: any
-  dialogButtons?: IDialogButton[]
+  dialogChildren?: any;
+  dialogButtons?: IDialogButton[];
+  dialogMaxWidth?: widthEnum;
 }
 
 export default class GeneralStore {
@@ -47,6 +49,7 @@ export default class GeneralStore {
   @observable dialogCloseButtonLabel: string;
   @observable dialogChildren: any;
   @observable dialogButtons: IDialogButton[];
+  @observable dialogMaxWidth: widthEnum;
 
   // AppDrawer Observables
   @observable appDrawerStatus?: boolean;
@@ -69,7 +72,8 @@ export default class GeneralStore {
     this.dialogShowCloseButton = true;
     this.dialogCloseButtonLabel = '';
     this.dialogChildren = '';
-    this.dialogButtons = []
+    this.dialogButtons = [];
+    this.dialogMaxWidth = widthEnum.SM
 
     // AppDrawer defaults
     this.appDrawerStatus = false;
@@ -103,7 +107,8 @@ export default class GeneralStore {
     this.dialogShowCloseButton = data.dialogShowCloseButton ? data.dialogShowCloseButton : true;
     this.dialogCloseButtonLabel = data.dialogCloseButtonLabel ? data.dialogCloseButtonLabel : '';
     this.dialogChildren = data.dialogChildren ? data.dialogChildren : '';
-    this.dialogButtons = data.dialogButtons ? data.dialogButtons : []
+    this.dialogButtons = data.dialogButtons ? data.dialogButtons : [];
+    this.dialogMaxWidth = data.dialogMaxWidth ? data.dialogMaxWidth : widthEnum.SM;
   }
 
   @action

@@ -34,40 +34,61 @@ const loginFormFields = [
       }
     ],
     row: true,
-    color: colorEnum.PRIMARY,
     fieldType: fieldsEnum.RADIO,
     layout: layoutConfig.L6
   },
   {
-    fieldType: fieldsEnum.CHECKBOX,
-    inputKey: 'login-checkbox',
+    inputKey: 'login-select',
+    fieldType: fieldsEnum.SELECTLIST,
+    name: 'Select an Option',
     layout: layoutConfig.L6,
-    label: 'Checkbox 1',
-    color: colorEnum.PRIMARY,
-    row: true,
-    checkboxes: [
+    multiple: false,
+    value: '',
+    menuItems: [
       {
-        label: 'test1',
-        value: 'test1'
+        name: 'Option 1',
+        value: 1
       },
       {
-        label: 'test2',
-        value: 'test2'
+        name: 'Option 2',
+        value: 2
       },
       {
-        label: 'test3',
-        value: 'test3'
-      },
-      {
-        label: 'test4',
-        value: 'test4'
-      },
-      {
-        label: 'test5',
-        value: 'test5'
+        name: 'Option 3',
+        value: 3
       }
     ]
   }
+  // {
+  //   fieldType: fieldsEnum.CHECKBOX,
+  //   inputKey: 'login-checkbox',
+  //   layout: layoutConfig.L6,
+  //   label: 'Checkbox 1',
+  //   color: colorEnum.PRIMARY,
+  //   row: true,
+  //   checkboxes: [
+  //     {
+  //       label: 'test1',
+  //       value: 'test1'
+  //     },
+  //     {
+  //       label: 'test2',
+  //       value: 'test2'
+  //     },
+  //     {
+  //       label: 'test3',
+  //       value: 'test3'
+  //     },
+  //     {
+  //       label: 'test4',
+  //       value: 'test4'
+  //     },
+  //     {
+  //       label: 'test5',
+  //       value: 'test5'
+  //     }
+  //   ]
+  // }
 ]
 
 export default loginFormFields
