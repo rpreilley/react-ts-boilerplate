@@ -1,6 +1,6 @@
 import { fieldsEnum } from '../../../lib/enums/fieldEnums';
 import { layoutConfig } from '../../../lib/constants/layout';
-import { colorEnum } from '../../../lib/enums/generalEnums';
+import { valueLabelDisplayEnum } from '../../../lib/enums/generalEnums';
 
 const loginFormFields = [
   {
@@ -21,11 +21,21 @@ const loginFormFields = [
     fullWidth: true
   },
   {
-    inputKey: 'login-datepicker',
-    fieldType: fieldsEnum.DATE,
+    inputKey: 'login-slider',
+    fieldType: fieldsEnum.SLIDER,
     layout: layoutConfig.L12,
-    label: 'Select a date',
+    valueLabelDisplay: valueLabelDisplayEnum.ON,
+    min: 0,
+    max: 10,
+    sliderLabel: 'Volume',
+    defaultValue: 5
   }
+  // {
+  //   inputKey: 'login-datepicker',
+  //   fieldType: fieldsEnum.DATE,
+  //   layout: layoutConfig.L12,
+  //   label: 'Select a date',
+  // }
   // {
   //   inputKey: 'login-radio',
   //   name: 'radio test',

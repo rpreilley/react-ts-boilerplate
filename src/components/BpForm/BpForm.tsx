@@ -186,13 +186,14 @@ class BpForm extends React.Component<IFormProps> {
           disabled={field.disabled}
           marks={field.marks}
           max={field.max}
+          sliderLabel={field.sliderLabel}
           min={field.min}
           name={field.name}
-          onChange={field.onChange}
           orientation={field.orientation}
           step={field.step}
           value={field.value}
           valueLabelDisplay={field.valueLabelDisplay}
+          onChange={(inputKey: any, switchValue) => this.updateValue(inputKey, switchValue)}
       />
       </Grid>
     )
