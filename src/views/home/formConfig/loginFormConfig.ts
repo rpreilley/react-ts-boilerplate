@@ -1,6 +1,5 @@
 import { fieldsEnum } from '../../../lib/enums/fieldEnums';
 import { layoutConfig } from '../../../lib/constants/layout';
-import { valueLabelDisplayEnum } from '../../../lib/enums/generalEnums';
 
 const loginFormFields = [
   {
@@ -20,16 +19,23 @@ const loginFormFields = [
     layout: layoutConfig.L12,
     fullWidth: true
   },
-  {
-    inputKey: 'login-slider',
-    fieldType: fieldsEnum.SLIDER,
-    layout: layoutConfig.L12,
-    valueLabelDisplay: valueLabelDisplayEnum.ON,
-    min: 0,
-    max: 10,
-    sliderLabel: 'Volume',
-    defaultValue: 5
-  }
+  // {
+  //   inputKey: 'login-switch',
+  //   fieldType: fieldsEnum.SWITCH,
+  //   layout: layoutConfig.L6,
+  //   switchLabel: 'Switch label',
+  //   checked: true
+  // }
+  // {
+  //   inputKey: 'login-slider',
+  //   fieldType: fieldsEnum.SLIDER,
+  //   layout: layoutConfig.L12,
+  //   valueLabelDisplay: valueLabelDisplayEnum.ON,
+  //   min: 0,
+  //   max: 10,
+  //   sliderLabel: 'Volume',
+  //   defaultValue: 5
+  // }
   // {
   //   inputKey: 'login-datepicker',
   //   fieldType: fieldsEnum.DATE,

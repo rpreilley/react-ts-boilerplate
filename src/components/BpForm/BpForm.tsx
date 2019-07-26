@@ -23,6 +23,8 @@ export interface IFormProps {
                 IBpCheckboxProps &
                 IBpDatePickerProps & 
                 IBpSelectListProps &
+                IBpSliderProps &
+                IBpSwitchProps &
                 IBpFormControlLabelProps>
   userStore?: IUserStore
 }
@@ -193,7 +195,7 @@ class BpForm extends React.Component<IFormProps> {
           step={field.step}
           value={field.value}
           valueLabelDisplay={field.valueLabelDisplay}
-          onChange={(inputKey: any, switchValue) => this.updateValue(inputKey, switchValue)}
+          onChange={(inputKey: any, sliderValue) => this.updateValue(inputKey, sliderValue)}
       />
       </Grid>
     )
@@ -212,7 +214,8 @@ class BpForm extends React.Component<IFormProps> {
           checked={field.checked}
           value={field.value}
           size={field.size}
-          onChange={field.onChange}
+          switchLabel={field.switchLabel}
+          onChange={(inputKey: any, switchValue) => this.updateValue(inputKey, switchValue)}
         />
       </Grid>
     )
